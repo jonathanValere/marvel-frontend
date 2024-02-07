@@ -4,10 +4,12 @@ import { useState, useEffect } from "react";
 
 //Import components
 import Card from "../../components/Card/Card";
+import SearchBar from "../../components/Searchbar/Searchbar";
 
 export default function Comics({ dataComics, setDataComics, urlBack }) {
   const [listComics, setListComics] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [search, setSearch] = useState("");
 
   // Récupération de données sur les comics --
   useEffect(() => {
@@ -25,20 +27,28 @@ export default function Comics({ dataComics, setDataComics, urlBack }) {
     }
   };
   // -----
-  console.log("Data >>>", dataComics);
-  console.log("List >>>", listComics);
+  const handleSearch = (event) => {
+    const value = event.target.value.toLowerCase();
+    setSearch(value);
+  };
+
   return !isLoading ? (
     <p>En chargement...</p>
   ) : (
-    <div>
-      {listComics.map((com) => (
-        <Card
-          key={com._id}
-          thumbnail={com.thumbnail}
-          name={com.title}
-          description={com.description}
-        />
-      ))}
-    </div>
+    <section>
+      <SearchBar item="Comics" handleSearch={handleSearch} search={search} />
+      <div>
+        {listComics
+          .filter((comic) => comic.title.toLowerCase().includes(search))
+          .map((com) => (
+            <Card
+              key={com._id}
+              thumbnail={com.thumbnail}
+              name={com.title}
+              description={com.description}
+            />
+          ))}
+      </div>
+    </section>
   );
 }
