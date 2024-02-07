@@ -1,8 +1,10 @@
+// import packages
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 // Import components --
-import Personnage from "../../components/personnage/Personnage";
+import Card from "../../components/Card/Card";
 
 export default function HomePage({ urlBack }) {
   const [characters, setCharacters] = useState([]); // List of characters
@@ -28,16 +30,14 @@ export default function HomePage({ urlBack }) {
     <section>
       <div>
         {characters.map((character) => (
-          <Personnage character={character} key={character._id} />
-          //   <div key={character._id}>
-          //     <img
-          //       src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-          //       width={200}
-          //       height={250}
-          //     />
-          //     <p>{character.name}</p>
-          //     <p>{character.description}</p>
-          //   </div>
+          <Link to={`/character/${character._id}`} key={character._id}>
+            <Card
+              thumbnail={character.thumbnail}
+              name={character.name}
+              description={character.description}
+            />
+          </Link>
+          // <Personnage character={character} key={character._id} />
         ))}
       </div>
     </section>

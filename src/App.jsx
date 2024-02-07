@@ -2,9 +2,11 @@ import "./App.css";
 
 //Import packages
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
 // Import components
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 // Import pages
 import HomePage from "./pages/HomePage/HomePage";
@@ -13,22 +15,35 @@ import PersonnageDetails from "./pages/Personnages/PersonnageDetails";
 import Comics from "./pages/Comics/Comics";
 
 function App() {
+  const [dataComics, setDataComics] = useState({});
   const urlBack = "https://site--marvel-backend--lkcrzmx4xyh5.code.run";
 
   return (
     <Router>
       <Header />
       <main>
-        <Routes>
-          <Route path="/" element={<HomePage urlBack={urlBack} />} />
-          <Route path="/characters" element={<Personnages />} />
-          <Route
-            path="/character/:characterId"
-            element={<PersonnageDetails urlBack={urlBack} />}
-          />
-          <Route path="/comics" element={<Comics />} />
-        </Routes>
+        <section>
+          <Routes>
+            <Route path="/" element={<HomePage urlBack={urlBack} />} />
+            <Route path="/characters" element={<Personnages />} />
+            <Route
+              path="/character/:characterId"
+              element={<PersonnageDetails urlBack={urlBack} />}
+            />
+            <Route
+              path="/comics"
+              element={
+                <Comics
+                  dataComics={dataComics}
+                  setDataComics={setDataComics}
+                  urlBack={urlBack}
+                />
+              }
+            />
+          </Routes>
+        </section>
       </main>
+      <Footer />
     </Router>
   );
 }
