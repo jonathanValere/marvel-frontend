@@ -16,7 +16,8 @@ import Comics from "./pages/Comics/Comics";
 
 function App() {
   const [dataComics, setDataComics] = useState({});
-  const urlBack = "https://site--marvel-backend--lkcrzmx4xyh5.code.run";
+  // const urlBack = "https://site--marvel-backend--lkcrzmx4xyh5.code.run";
+  const urlBack = "http://localhost:3000";
 
   return (
     <Router>
@@ -25,10 +26,19 @@ function App() {
         <section>
           <Routes>
             <Route path="/" element={<HomePage urlBack={urlBack} />} />
-            <Route path="/characters" element={<Personnages />} />
+            <Route
+              path="/characters"
+              element={<Personnages urlBack={urlBack} />}
+            />
             <Route
               path="/character/:characterId"
-              element={<PersonnageDetails urlBack={urlBack} />}
+              element={
+                <PersonnageDetails
+                  urlBack={urlBack}
+                  dataComics={dataComics}
+                  setDataComics={setDataComics}
+                />
+              }
             />
             <Route
               path="/comics"
