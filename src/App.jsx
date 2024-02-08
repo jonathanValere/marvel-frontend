@@ -14,8 +14,8 @@ import PersonnageDetails from "./pages/Personnages/PersonnageDetails";
 import Comics from "./pages/Comics/Comics";
 
 function App() {
-  const urlBack = "https://site--marvel-backend--lkcrzmx4xyh5.code.run";
-  // const urlBack = "http://localhost:3000";
+  const urlBack = "https://site--marvel-backend--lkcrzmx4xyh5.code.run"; // Backend prod
+  // const urlBack = "http://localhost:3000"; // Backend dev
 
   return (
     <Router>
