@@ -1,4 +1,10 @@
-export default function SearchBar({ item, handleSearch, search }) {
+export default function SearchBar({ item, search, setSearch }) {
+  // Gestion de la recherche ----
+  const handleSearch = (event) => {
+    const value = event.target.value.toLowerCase();
+    setSearch(value);
+  };
+
   return (
     <div>
       <input

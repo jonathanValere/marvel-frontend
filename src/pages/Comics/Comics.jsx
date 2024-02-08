@@ -6,39 +6,42 @@ import { useState, useEffect } from "react";
 import Card from "../../components/Card/Card";
 import SearchBar from "../../components/Searchbar/Searchbar";
 
-export default function Comics({ dataComics, setDataComics, urlBack }) {
-  const [listComics, setListComics] = useState([]);
+export default function Comics({ urlBack }) {
   const [isLoading, setIsLoading] = useState(false);
+  const [dataComics, setDataComics] = useState({});
   const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
-  // Récupération de données sur les comics --
+  // Récupération des données sur les comics --
   useEffect(() => {
     getDataComics();
   }, []);
 
   const getDataComics = async () => {
     try {
-      const response = await axios.get(urlBack + "/comics");
-      setDataComics(response.data.data);
-      setListComics(response.data.data.results);
+      const { data } = await axios.get(urlBack + "/comics");
+      setDataComics(data.data);
       setIsLoading(true);
     } catch (error) {
       console.log(error.message);
     }
   };
   // -----
-  const handleSearch = (event) => {
-    const value = event.target.value.toLowerCase();
-    setSearch(value);
-  };
+
+  // --
+
+  console.log("dataComics >>>", dataComics);
 
   return !isLoading ? (
     <p>En chargement...</p>
   ) : (
     <section>
-      <SearchBar item="Comics" handleSearch={handleSearch} search={search} />
+      <SearchBar item="comics" setSearch={setSearch} search={search} />
+      {currentPage}
+      <button>Précédent</button>
+      <button>Suivant</button>
       <div>
-        {listComics
+        {dataComics.results
           .filter((comic) => comic.title.toLowerCase().includes(search))
           .map((com) => (
             <Card

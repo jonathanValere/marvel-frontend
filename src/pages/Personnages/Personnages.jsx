@@ -26,31 +26,26 @@ export default function Personnages({ urlBack }) {
     }
   };
 
-  const handleSearch = (event) => {
-    const value = event.target.value.toLowerCase();
-    setSearch(value);
-  };
+  // Liste des characters ---
+  const listCharacters = characters
+    .filter((character) => character.name.toLowerCase().includes(search))
+    .map((character) => (
+      <Link to={`/character/${character._id}`} key={character._id}>
+        <Card
+          thumbnail={character.thumbnail}
+          name={character.name}
+          description={character.description}
+        />
+      </Link>
+    ));
+  // ---
 
-  console.log(search);
   return !isLoading ? (
     <p>En chargement...</p>
   ) : (
     <section>
-      <SearchBar item="Character" handleSearch={handleSearch} search={search} />
-      <div>
-        {characters
-          .filter((character) => character.name.toLowerCase().includes(search))
-          .map((character) => (
-            <Link to={`/character/${character._id}`} key={character._id}>
-              <Card
-                thumbnail={character.thumbnail}
-                name={character.name}
-                description={character.description}
-              />
-            </Link>
-            // <Personnage character={character} key={character._id} />
-          ))}
-      </div>
+      <SearchBar item="character" setSearch={setSearch} search={search} />
+      <div>{listCharacters}</div>
     </section>
   );
 }

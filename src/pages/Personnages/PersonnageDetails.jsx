@@ -3,17 +3,14 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-// Import components
+// Import components --
 import Card from "../../components/Card/Card";
 
 export default function PersonnageDetails({ urlBack }) {
   const { characterId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [character, setCharacter] = useState(); // Données sur le super-héros
-
-  // A FAIRE !!!!!!!!!!
   const [listComicsOfCharacter, setListComicsOfCharacter] = useState([]); // Liste des comics
-  // ---------
   const [thumbnail, setThumbnail] = useState(""); // Récupérer l'image du super héros
 
   useEffect(() => {
@@ -28,11 +25,11 @@ export default function PersonnageDetails({ urlBack }) {
     try {
       const { data } = await axios.get(urlBack + "/character/" + characterId);
       setCharacter(data.data);
+      // Créer le chemin de l'image et la stocker
       setThumbnail(
         data.data.thumbnail.path + "." + data.data.thumbnail.extension
       );
       setIsLoading(true);
-      console.log(data.data.comics.length);
     } catch (error) {
       console.log(error.message);
     }
@@ -42,11 +39,16 @@ export default function PersonnageDetails({ urlBack }) {
   const getDataComics = async (tab) => {
     const listComicsOfCharacterCopy = [...listComicsOfCharacter];
     try {
+      // Boucle sur le tableau contenant les Id des comics
       for (let index = 0; index < tab.length; index++) {
+        // Récupérer l'Id
         const comicId = tab[index];
+        //Faire une requête pour récupérer le comic
         const response = await axios.get(urlBack + "/comic/" + comicId);
         const comic = response.data.data;
+        // Ajouter le comic à la copie du tableau
         listComicsOfCharacterCopy.push(comic);
+        // Mettre à jour la liste des comics du character
         setListComicsOfCharacter(listComicsOfCharacterCopy);
       }
     } catch (error) {
@@ -54,8 +56,20 @@ export default function PersonnageDetails({ urlBack }) {
     }
   };
 
+  // Liste des comics ---
+  const list = listComicsOfCharacter.map((comic) => (
+    <li key={comic._id}>
+      <Card
+        thumbnail={comic.thumbnail}
+        name={comic.title}
+        description={comic.description ? comic.description : "No information"}
+      />
+    </li>
+  ));
+  // ----
+
   // console.log("Character >>>>", character);
-  console.log("list >>>>", listComicsOfCharacter);
+  // console.log("list >>>>", listComicsOfCharacter);
 
   return (
     <section>
@@ -71,17 +85,7 @@ export default function PersonnageDetails({ urlBack }) {
                 <p>{character.description}</p>
               </div>
               <div>
-                <ul>
-                  {listComicsOfCharacter.map((comic) => (
-                    <li key={comic._id}>
-                      <Card
-                        thumbnail={comic.thumbnail}
-                        name={comic.title}
-                        description={comic.description}
-                      />
-                    </li>
-                  ))}
-                </ul>
+                <ul>{list}</ul>
               </div>
             </aside>
           </>
