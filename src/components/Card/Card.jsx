@@ -1,5 +1,6 @@
 export default function Card({ thumbnail, name, description }) {
   // Pour les comics le name est égale au title
+
   return (
     <div>
       <div>

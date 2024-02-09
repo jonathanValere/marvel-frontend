@@ -12,6 +12,7 @@ export default function Header() {
       <nav>
         <Link to="/characters">Personnages</Link>
         <Link to="/comics">Comics</Link>
+        <Link to="/favoris">Favoris</Link>
       </nav>
     </header>
   );

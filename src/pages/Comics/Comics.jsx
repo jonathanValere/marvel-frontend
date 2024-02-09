@@ -3,12 +3,12 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 
-//Import components
-import Card from "../../components/Card/Card";
+// Import components
 import SearchBar from "../../components/Searchbar/Searchbar";
 import Pagination from "../../components/Pagination/Pagination";
+import Comic from "../../components/Comic/Comic";
 
-export default function Comics({ urlBack }) {
+export default function Comics({ urlBack, myFavorites, setMyFavorites }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [dataComics, setDataComics] = useState({});
@@ -27,7 +27,6 @@ export default function Comics({ urlBack }) {
       const { data } = await axios.get(`${urlBack}/comics?skip=${skip}`);
       setCountTotal(data.data.count);
       setDataComics(data.data);
-      // console.log(data);
       setIsLoading(true);
     } catch (error) {
       console.log(error.message);
@@ -45,11 +44,8 @@ export default function Comics({ urlBack }) {
         search={search}
         urlBack={urlBack}
       />
-
       <p>
-        <span>
-          {currentPage * 100} sur {countTotal} comics
-        </span>
+        <span>{countTotal} comics found</span>
       </p>
       <Pagination
         currentPage={currentPage}
@@ -62,12 +58,12 @@ export default function Comics({ urlBack }) {
       <div>
         {dataComics.results
           .filter((comic) => comic.title.toLowerCase().includes(search))
-          .map((com) => (
-            <Card
-              key={com._id}
-              thumbnail={com.thumbnail}
-              name={com.title}
-              description={com.description}
+          .map((comic) => (
+            <Comic
+              key={comic._id}
+              comic={comic}
+              setMyFavorites={setMyFavorites}
+              myFavorites={myFavorites}
             />
           ))}
       </div>

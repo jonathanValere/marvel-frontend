@@ -2,6 +2,8 @@ import "./App.css";
 
 //Import packages
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useState } from "react";
 
 // Import components
 import Header from "./components/Header/Header";
@@ -12,10 +14,12 @@ import HomePage from "./pages/HomePage/HomePage";
 import Personnages from "./pages/Personnages/Personnages";
 import PersonnageDetails from "./pages/Personnages/PersonnageDetails";
 import Comics from "./pages/Comics/Comics";
+import Favoris from "./pages/Favoris/Favoris";
 
 function App() {
-  const urlBack = "https://site--marvel-backend--lkcrzmx4xyh5.code.run"; // Backend prod
-  // const urlBack = "http://localhost:3000"; // Backend dev
+  // const urlBack = "https://site--marvel-backend--lkcrzmx4xyh5.code.run"; // Backend prod
+  const urlBack = "http://localhost:3000"; // Backend dev
+  const [myFavorites, setMyFavorites] = useState(Cookies.get() || null);
 
   return (
     <Router>
@@ -26,13 +30,29 @@ function App() {
             <Route path="/" element={<HomePage urlBack={urlBack} />} />
             <Route
               path="/characters"
-              element={<Personnages urlBack={urlBack} />}
+              element={
+                <Personnages
+                  urlBack={urlBack}
+                  myFavorites={myFavorites}
+                  setMyFavorites={setMyFavorites}
+                />
+              }
             />
             <Route
               path="/character/:characterId"
               element={<PersonnageDetails urlBack={urlBack} />}
             />
-            <Route path="/comics" element={<Comics urlBack={urlBack} />} />
+            <Route
+              path="/comics"
+              element={
+                <Comics
+                  urlBack={urlBack}
+                  myFavorites={myFavorites}
+                  setMyFavorites={setMyFavorites}
+                />
+              }
+            />
+            <Route path="/favoris" element={<Favoris urlBack={urlBack} />} />
           </Routes>
         </section>
       </main>

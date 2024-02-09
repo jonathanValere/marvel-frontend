@@ -37,7 +37,7 @@ export default function Pagination({
       >
         Précédent
       </button>
-      <span>{`Page ${currentPage}`}</span>
+      <span>{`Page ${currentPage}/${maxPage}`}</span>
       <button
         onClick={() => handleClickPage("next")}
         disabled={currentPage === maxPage}

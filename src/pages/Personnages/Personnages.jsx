@@ -1,14 +1,14 @@
 // import packages
 import { useState, useEffect } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 
 // Import components --
-import Card from "../../components/Card/Card";
 import SearchBar from "../../components/Searchbar/Searchbar";
 import Pagination from "../../components/Pagination/Pagination";
+import Character from "../../components/Character/Character";
 
-export default function Personnages({ urlBack }) {
+export default function Personnages({ urlBack, myFavorites, setMyFavorites }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [characters, setCharacters] = useState([]); // List of characters
   const [isLoading, setIsLoading] = useState(false);
@@ -38,9 +38,7 @@ export default function Personnages({ urlBack }) {
     <section>
       <SearchBar item="character" setSearch={setSearch} search={search} />
       <p>
-        <span>
-          {currentPage * 100} sur {countTotal} personnages
-        </span>
+        <span>{countTotal} characters found</span>
       </p>
       <Pagination
         countTotal={countTotal}
@@ -54,13 +52,12 @@ export default function Personnages({ urlBack }) {
         {characters.results
           .filter((character) => character.name.toLowerCase().includes(search))
           .map((character) => (
-            <Link to={`/character/${character._id}`} key={character._id}>
-              <Card
-                thumbnail={character.thumbnail}
-                name={character.name}
-                description={character.description}
-              />
-            </Link>
+            <Character
+              key={character._id}
+              character={character}
+              myFavorites={myFavorites}
+              setMyFavorites={setMyFavorites}
+            />
           ))}
       </div>
     </section>
