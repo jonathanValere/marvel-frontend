@@ -15,6 +15,7 @@ import Personnages from "./pages/Personnages/Personnages";
 import PersonnageDetails from "./pages/Personnages/PersonnageDetails";
 import Comics from "./pages/Comics/Comics";
 import Favoris from "./pages/Favoris/Favoris";
+import ComicDetails from "./pages/Comics/ComicDetails";
 
 function App() {
   // const urlBack = "https://site--marvel-backend--lkcrzmx4xyh5.code.run"; // Backend prod
@@ -51,6 +52,10 @@ function App() {
                   setMyFavorites={setMyFavorites}
                 />
               }
+            />
+            <Route
+              path="/comic/:comicId"
+              element={<ComicDetails urlBack={urlBack} />}
             />
             <Route path="/favoris" element={<Favoris urlBack={urlBack} />} />
           </Routes>

@@ -1,14 +1,14 @@
 // Import packages
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 // Import components --
 import Card from "../../components/Card/Card";
 
 export default function PersonnageDetails({ urlBack }) {
   const { characterId } = useParams();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [character, setCharacter] = useState(); // Données sur le super-héros
   const [listComicsOfCharacter, setListComicsOfCharacter] = useState([]); // Liste des comics
   const [thumbnail, setThumbnail] = useState(""); // Récupérer l'image du super héros
@@ -28,9 +28,9 @@ export default function PersonnageDetails({ urlBack }) {
       setCharacter(data.data);
       // Créer le chemin de l'image et la stocker
       setThumbnail(
-        data.data.thumbnail.path + "." + data.data.thumbnail.extension
+        `${data.data.thumbnail.path}.${data.data.thumbnail.extension}`
       );
-      setIsLoading(true);
+      setIsLoading(false);
     } catch (error) {
       console.log(error.message);
     }
@@ -49,35 +49,35 @@ export default function PersonnageDetails({ urlBack }) {
   // Liste des comics ---
   const list = listComicsOfCharacter.map((comic) => (
     <li key={comic._id}>
-      <Card
-        thumbnail={comic.thumbnail}
-        name={comic.title}
-        description={comic.description ? comic.description : "No information"}
-      />
+      <Link to={`/comic/${comic._id}`}>
+        <Card
+          thumbnail={comic.thumbnail}
+          name={comic.title}
+          description={comic.description ? comic.description : "No information"}
+        />
+      </Link>
     </li>
   ));
   // ----
 
   return (
-    <section>
-      <div>
-        {!isLoading ? (
-          <p>En chargement...</p>
-        ) : (
-          <>
-            <img src={thumbnail} alt={character.name} />
-            <aside>
-              <div>
-                <p>{character.name}</p>
-                <p>{character.description}</p>
-              </div>
-              <div>
-                <ul>{list}</ul>
-              </div>
-            </aside>
-          </>
-        )}
-      </div>
-    </section>
+    <div>
+      {isLoading ? (
+        <p>En chargement...</p>
+      ) : (
+        <>
+          <img src={thumbnail} alt={character.name} />
+          <aside>
+            <div>
+              <p>{character.name}</p>
+              <p>{character.description}</p>
+            </div>
+            <div>
+              <ul>{list}</ul>
+            </div>
+          </aside>
+        </>
+      )}
+    </div>
   );
 }

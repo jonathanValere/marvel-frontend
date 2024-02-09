@@ -43,8 +43,6 @@ export default function Favoris({ urlBack }) {
   };
   // --
 
-  console.log("dataChar >>>", dataCharacters);
-
   return isLoading ? (
     <p>En chargement...</p>
   ) : (
