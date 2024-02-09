@@ -1,5 +1,7 @@
+// Import packages
 import Cookies from "js-cookie";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function ItemFavorite({ character, comic, item, setFavoris }) {
   const [isFavorite, setIsFavorite] = useState(true);
@@ -25,24 +27,28 @@ export default function ItemFavorite({ character, comic, item, setFavoris }) {
       <li>
         {item === "character" ? (
           <>
-            <img
-              src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-              width={100}
-              height={150}
-            />
-            <p>{character.name}</p>
+            <Link to={`/character/${character._id}`}>
+              <img
+                src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                width={100}
+                height={150}
+              />
+              <p>{character.name}</p>
+            </Link>
             <button onClick={() => removeToFavorites(character._id)}>
               Retirer des favoris
             </button>
           </>
         ) : (
           <>
-            <img
-              src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-              width={100}
-              height={150}
-            />
-            <p>{comic.title}</p>
+            <Link to={`/comic/${comic._id}`}>
+              <img
+                src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                width={100}
+                height={150}
+              />
+              <p>{comic.title}</p>
+            </Link>
             <button onClick={() => removeToFavorites(comic._id)}>
               Retirer des favoris
             </button>
