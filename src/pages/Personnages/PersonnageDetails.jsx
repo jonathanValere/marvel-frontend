@@ -18,12 +18,13 @@ export default function PersonnageDetails({ urlBack }) {
   }, []);
 
   useEffect(() => {
-    isLoading && getDataComics(character.comics);
+    isLoading && getDataComics();
   }, [character]);
 
   const getCharacter = async () => {
     try {
-      const { data } = await axios.get(urlBack + "/character/" + characterId);
+      const { data } = await axios.get(`${urlBack}/character/${characterId}`);
+      // const { data } = await axios.get(urlBack + "/character/" + characterId);
       setCharacter(data.data);
       // Créer le chemin de l'image et la stocker
       setThumbnail(
@@ -36,23 +37,12 @@ export default function PersonnageDetails({ urlBack }) {
   };
 
   // Récupérer les comics ---
-  const getDataComics = async (tab) => {
-    const listComicsOfCharacterCopy = [...listComicsOfCharacter];
+  const getDataComics = async () => {
     try {
-      // Boucle sur le tableau contenant les Id des comics
-      for (let index = 0; index < tab.length; index++) {
-        // Récupérer l'Id
-        const comicId = tab[index];
-        //Faire une requête pour récupérer le comic
-        const response = await axios.get(urlBack + "/comic/" + comicId);
-        const comic = response.data.data;
-        // Ajouter le comic à la copie du tableau
-        listComicsOfCharacterCopy.push(comic);
-        // Mettre à jour la liste des comics du character
-        setListComicsOfCharacter(listComicsOfCharacterCopy);
-      }
+      const { data } = await axios.get(`${urlBack}/comics/${characterId}`);
+      setListComicsOfCharacter(data.data.comics);
     } catch (error) {
-      console.log(error.message);
+      console.log(error.response);
     }
   };
 
@@ -67,9 +57,6 @@ export default function PersonnageDetails({ urlBack }) {
     </li>
   ));
   // ----
-
-  // console.log("Character >>>>", character);
-  // console.log("list >>>>", listComicsOfCharacter);
 
   return (
     <section>

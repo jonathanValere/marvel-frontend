@@ -33,7 +33,7 @@ export default function Personnages({ urlBack, myFavorites, setMyFavorites }) {
       console.log(error.message);
     }
   };
-
+  console.log(characters);
   return !isLoading ? (
     <p>En chargement...</p>
   ) : (
