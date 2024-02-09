@@ -12,18 +12,20 @@ export default function Personnages({ urlBack, myFavorites, setMyFavorites }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [characters, setCharacters] = useState([]); // List of characters
   const [isLoading, setIsLoading] = useState(false);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(searchParams.get("name") || "");
   const [currentPage, setCurrentPage] = useState(1);
   const [skip, setSkip] = useState(searchParams.get("skip") || 0);
   const [countTotal, setCountTotal] = useState(1); // Total de Personnages, sert à calculer le nombre de page
 
   useEffect(() => {
     getAllCharacters();
-  }, [skip]);
+  }, [skip, search]);
 
   const getAllCharacters = async () => {
     try {
-      const { data } = await axios.get(`${urlBack}/characters?skip=${skip}`);
+      const { data } = await axios.get(
+        `${urlBack}/characters?skip=${skip}&name=${search}`
+      );
       setCharacters(data.data);
       setCountTotal(data.data.count);
       setIsLoading(true);
@@ -36,7 +38,12 @@ export default function Personnages({ urlBack, myFavorites, setMyFavorites }) {
     <p>En chargement...</p>
   ) : (
     <section>
-      <SearchBar item="character" setSearch={setSearch} search={search} />
+      <SearchBar
+        item="characters"
+        setSearch={setSearch}
+        search={search}
+        setSearchParams={setSearchParams}
+      />
       <p>
         <span>{countTotal} characters found</span>
       </p>
