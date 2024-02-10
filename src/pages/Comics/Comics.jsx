@@ -14,7 +14,7 @@ export default function Comics({ urlBack, myFavorites, setMyFavorites }) {
   const [dataComics, setDataComics] = useState({});
   //searchParams.get("title") || "" permet de prendre la valeur dans l'URL
   const [search, setSearch] = useState(searchParams.get("title") || "");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(searchParams.get("skip") || 1);
   const [skip, setSkip] = useState(searchParams.get("skip") || 0);
   const [countTotal, setCountTotal] = useState(0); // Total de Comics, sert à calculer le nombre de page
 
@@ -62,6 +62,7 @@ export default function Comics({ urlBack, myFavorites, setMyFavorites }) {
       <div>
         {dataComics.results
           .filter((comic) => comic.title.toLowerCase().includes(search))
+          .sort()
           .map((comic) => (
             <Comic
               key={comic._id}
