@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 // Import components --
 import Card from "../../components/Card/Card";
 import Banner from "../../components/Banner/Banner";
+import MainHomepage from "../../components/MainHomepage/MainHomepage";
+import Personnages from "../Personnages/Personnages";
 
 export default function HomePage({ urlBack }) {
   const [characters, setCharacters] = useState([]); // List of characters
@@ -30,21 +32,7 @@ export default function HomePage({ urlBack }) {
   ) : (
     <>
       <Banner />
-      <section>
-        <ul>
-          {characters.map((character) => (
-            <li key={character._id}>
-              <Link to={`/character/${character._id}`}>
-                <Card
-                  thumbnail={character.thumbnail}
-                  name={character.name}
-                  description={character.description}
-                />
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <MainHomepage characters={characters} />
     </>
   );
 }

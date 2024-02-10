@@ -8,6 +8,6 @@ header {
   width: 100%;
   backdrop-filter: blur(10rem);
   background-color: var(--primary-color);
-  z-index: 1;
+  z-index: 1000;
   /* background-color: transparent; */
 }
