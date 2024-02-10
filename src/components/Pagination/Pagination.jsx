@@ -14,7 +14,7 @@ export default function Pagination({
     if (option === "next") {
       if (currentPage < maxPage) {
         setSkip((prev) => prev + 100);
-        setSearchParams({ page: currentPage + 1 });
+        setSearchParams({ page: currentPage + 1 }); //ce qui s'affiche dans l'url
         setCurrentPage((prev) => prev + 1);
       }
     }
@@ -22,7 +22,7 @@ export default function Pagination({
     if (option === "previous") {
       if (currentPage > 1) {
         setSkip((prev) => prev - 100);
-        setSearchParams({ page: currentPage - 1 });
+        setSearchParams({ page: currentPage - 1 }); //ce qui s'affiche dans l'url
         setCurrentPage((prev) => prev - 1);
       }
     }

@@ -1,5 +1,10 @@
 import "./App.css";
 
+// Import fonts
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faHeart, faKey, faListAlt } from "@fortawesome/free-solid-svg-icons";
+library.add(faHeart, faKey, faListAlt);
+
 //Import packages
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -26,40 +31,38 @@ function App() {
     <Router>
       <Header />
       <main>
-        <section>
-          <Routes>
-            <Route path="/" element={<HomePage urlBack={urlBack} />} />
-            <Route
-              path="/characters"
-              element={
-                <Personnages
-                  urlBack={urlBack}
-                  myFavorites={myFavorites}
-                  setMyFavorites={setMyFavorites}
-                />
-              }
-            />
-            <Route
-              path="/character/:characterId"
-              element={<PersonnageDetails urlBack={urlBack} />}
-            />
-            <Route
-              path="/comics"
-              element={
-                <Comics
-                  urlBack={urlBack}
-                  myFavorites={myFavorites}
-                  setMyFavorites={setMyFavorites}
-                />
-              }
-            />
-            <Route
-              path="/comic/:comicId"
-              element={<ComicDetails urlBack={urlBack} />}
-            />
-            <Route path="/favoris" element={<Favoris urlBack={urlBack} />} />
-          </Routes>
-        </section>
+        <Routes>
+          <Route path="/" element={<HomePage urlBack={urlBack} />} />
+          <Route
+            path="/characters"
+            element={
+              <Personnages
+                urlBack={urlBack}
+                myFavorites={myFavorites}
+                setMyFavorites={setMyFavorites}
+              />
+            }
+          />
+          <Route
+            path="/character/:characterId"
+            element={<PersonnageDetails urlBack={urlBack} />}
+          />
+          <Route
+            path="/comics"
+            element={
+              <Comics
+                urlBack={urlBack}
+                myFavorites={myFavorites}
+                setMyFavorites={setMyFavorites}
+              />
+            }
+          />
+          <Route
+            path="/comic/:comicId"
+            element={<ComicDetails urlBack={urlBack} />}
+          />
+          <Route path="/favoris" element={<Favoris urlBack={urlBack} />} />
+        </Routes>
       </main>
       <Footer />
     </Router>

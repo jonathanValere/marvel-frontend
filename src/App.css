@@ -1,8 +1,37 @@
+:root {
+  /* VARIABLES */
+  --primary-color: #000000;
+  --secondary-color: #131313;
+  --third-color: #ffffff;
+  --fourth-color: #f0141e;
+  --border-radius: 5px;
+  --transition: 1s ease-in-out;
+}
+
+::selection {
+  color: var(--third-color);
+  background-color: var(--fourth-color);
+}
+
 body {
-  background-color: black;
+  background-color: var(--primary-color);
   color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  /* font-family: "Rozha One", serif; */
+}
+
+/* Title */
+h1 {
+  font-family: "Rozha One", serif;
 }
 
 a {
   color: #fff;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+button {
+  cursor: pointer;
 }

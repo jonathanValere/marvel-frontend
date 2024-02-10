@@ -21,7 +21,7 @@ export default function Comics({ urlBack, myFavorites, setMyFavorites }) {
   // Récupération des données sur les comics --
   useEffect(() => {
     getDataComics();
-  }, [skip, search]);
+  }, [currentPage, search]);
 
   // Récupérer tous les comics
   const getDataComics = async () => {

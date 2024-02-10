@@ -1,0 +1,24 @@
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+.signup {
+  padding: 0.7rem;
+  border: 1px solid var(--fourth-color);
+  border-radius: var(--border-radius);
+  color: var(--fourth-color);
+}
+
+.navigation a:hover:not(:last-child) {
+  color: var(--fourth-color);
+  transition: var(--transition);
+}
+
+.signup:hover {
+  background-color: var(--fourth-color);
+  color: var(--third-color);
+}
