@@ -4,10 +4,13 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 // Import components
-import ItemFavorite from "../../components/ItemFavorite/ItemFavorite";
+import PartFavorite from "../../components/PartFavorite/PartFavorite";
 
 export default function Favoris({ urlBack }) {
-  const [favoris, setFavoris] = useState(Cookies.get() || null); // Liste des favoris
+  // const [favoris, setFavoris] = useState(Cookies.get() || null); // Liste des favoris
+  // Pourquoi mettre dans un state ????!!! Ca fonction dans une variable classique
+
+  const favoris = Cookies.get() || null; // Liste des favoris
   const [dataCharacters, setDataCharacters] = useState([]); // Array qui contiendra uniquement toutes les données des characters
   const [dataComics, setDataComics] = useState([]); // Array qui contiendra uniquement toutes les données des comics
   const [isLoading, setIsLoading] = useState(true);
@@ -15,7 +18,6 @@ export default function Favoris({ urlBack }) {
   useEffect(() => {
     getFavorites();
   }, []);
-
   // Obtenir tous les favoris --
   const getFavorites = async () => {
     const dataCharactersCopy = [...dataCharacters];
@@ -48,28 +50,12 @@ export default function Favoris({ urlBack }) {
   ) : (
     <div>
       <h1>My favorites</h1>
-      <h2>Characters</h2>
-      <ul>
-        {dataCharacters.map((character) => (
-          <ItemFavorite
-            key={character._id}
-            item="character"
-            character={character}
-            setFavoris={setFavoris}
-          />
-        ))}
-      </ul>
-      <h2>Comics</h2>
-      <ul>
-        {dataComics.map((comic) => (
-          <ItemFavorite
-            key={comic._id}
-            item="comic"
-            comic={comic}
-            setFavoris={setFavoris}
-          />
-        ))}
-      </ul>
+      <PartFavorite
+        namePart="Characters"
+        item="character"
+        datas={dataCharacters}
+      />
+      <PartFavorite namePart="Comics" item="comic" datas={dataComics} />
     </div>
   );
 }

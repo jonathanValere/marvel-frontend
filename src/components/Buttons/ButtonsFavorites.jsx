@@ -13,17 +13,14 @@ export default function ButtonsFavorites({
 
   // Gestion  de l'ajout et de la suppression ---
   const addToFavorites = (id, nameItem) => {
-    console.log(id, nameItem);
     if (item === "character") {
       Cookies.set(id, `character-${nameItem}`);
-      // console.log(Cookies.get());
       setMyFavorites(Cookies.get());
       console.log(`Character ${nameItem} add to favorites!`);
     }
 
     if (item === "comic") {
       Cookies.set(id, `comic-${nameItem}`);
-      // console.log(Cookies.get());
       setMyFavorites(Cookies.get());
       console.log(`Comic ${nameItem} add to favorites!`);
     }
@@ -40,8 +37,6 @@ export default function ButtonsFavorites({
     return setIsFavorite(false);
   };
   // ---
-
-  // console.log("my favorites comp.button >>>", myFavorites);
 
   return isFavorite ? (
     <button

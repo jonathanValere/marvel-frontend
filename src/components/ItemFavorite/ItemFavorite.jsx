@@ -3,53 +3,53 @@ import Cookies from "js-cookie";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function ItemFavorite({ character, comic, item, setFavoris }) {
+export default function ItemFavorite({ ...props }) {
   const [isFavorite, setIsFavorite] = useState(true);
 
   // Retirer le character des favoris --
   const removeToFavorites = (id) => {
-    if (item === "character") {
+    if (props.item === "character") {
       Cookies.remove(id);
-      setFavoris(Cookies.get());
+      props.setCounter((prev) => prev - 1);
       setIsFavorite(false);
-      return console.log(`Character ${character.name} removed to favorites!`);
+      return console.log(`Character ${props.data.name} removed to favorites!`);
     }
-    if (item === "comic") {
+    if (props.item === "comic") {
       Cookies.remove(id);
-      setFavoris(Cookies.get());
+      props.setCounter((prev) => prev - 1);
       setIsFavorite(false);
-      return console.log(`Comic ${comic.title} removed to favorites!`);
+      return console.log(`Comic ${props.data.title} removed to favorites!`);
     }
   };
 
   return (
     isFavorite && (
       <li>
-        {item === "character" ? (
+        {props.item === "character" ? (
           <>
-            <Link to={`/character/${character._id}`}>
+            <Link to={`/character/${props.data._id}`}>
               <img
-                src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                src={`${props.data.thumbnail.path}.${props.data.thumbnail.extension}`}
                 width={100}
                 height={150}
               />
-              <p>{character.name}</p>
+              <p>{props.data.name}</p>
             </Link>
-            <button onClick={() => removeToFavorites(character._id)}>
+            <button onClick={() => removeToFavorites(props.data._id)}>
               Retirer des favoris
             </button>
           </>
         ) : (
           <>
-            <Link to={`/comic/${comic._id}`}>
+            <Link to={`/comic/${props.data._id}`}>
               <img
-                src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                src={`${props.data.thumbnail.path}.${props.data.thumbnail.extension}`}
                 width={100}
                 height={150}
               />
-              <p>{comic.title}</p>
+              <p>{props.data.title}</p>
             </Link>
-            <button onClick={() => removeToFavorites(comic._id)}>
+            <button onClick={() => removeToFavorites(props.data._id)}>
               Retirer des favoris
             </button>
           </>
