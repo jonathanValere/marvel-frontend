@@ -111,6 +111,7 @@ export default function PersonnageDetails({
                     </p>
                   </div>
                   <div className={styles["list-comics"]}>
+                    <h2>{list.length > 0 && "Comics"}</h2>
                     <ul>{list}</ul>
                   </div>
                 </aside>

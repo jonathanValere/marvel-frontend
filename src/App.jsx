@@ -6,11 +6,10 @@ import {
   faHeart,
   faChevronRight,
   faChevronLeft,
+  faChevronUp,
   faStar,
-  faKey,
-  faListAlt,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faHeart, faChevronRight, faChevronLeft, faStar, faKey, faListAlt);
+library.add(faHeart, faChevronRight, faChevronLeft, faChevronUp, faStar);
 
 //Import packages
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";

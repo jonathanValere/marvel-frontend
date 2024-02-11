@@ -3,10 +3,12 @@ import styles from "./LayoutItems.module.css";
 // Import components
 import Pagination from "../Pagination/Pagination";
 import SearchBar from "../Searchbar/Searchbar";
+import ButtonScroll from "../Buttons/ButtonScroll";
 
 export default function LayoutItems({ ...props }) {
   return (
     <>
+      <ButtonScroll />
       <div className={styles["bloc-search-pagination"]}>
         <SearchBar
           item={props.title}

@@ -7,8 +7,6 @@ import axios from "axios";
 import styles from "./Comics.module.css";
 
 // Import components
-import SearchBar from "../../components/Searchbar/Searchbar";
-import Pagination from "../../components/Pagination/Pagination";
 import Comic from "../../components/Comic/Comic";
 import LayoutItems from "../../components/Layouts/LayoutItems";
 import Loading from "../../components/Loading/Loading";

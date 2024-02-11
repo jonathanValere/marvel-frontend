@@ -1,0 +1,13 @@
+.button-scroll {
+  color: var(--third-color);
+  position: fixed;
+  bottom: 10vh;
+  right: 10vh;
+  width: 1.2rem;
+  height: 1.2rem;
+  padding: 1rem;
+  border-radius: 50%;
+  z-index: 10000;
+  background-color: var(--fourth-color);
+  cursor: pointer;
+}
