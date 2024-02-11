@@ -48,9 +48,6 @@ export default function Comics({ urlBack, myFavorites, setMyFavorites }) {
         search={search}
         setSearchParams={setSearchParams}
       />
-      <p>
-        <span>{countTotal} comics found</span>
-      </p>
       <Pagination
         currentPage={currentPage}
         countTotal={countTotal}
@@ -59,6 +56,9 @@ export default function Comics({ urlBack, myFavorites, setMyFavorites }) {
         setSearchParams={setSearchParams}
         setCurrentPage={setCurrentPage}
       />
+      <p>
+        <span>{countTotal} comics found</span>
+      </p>
       <div>
         {dataComics.results
           .filter((comic) => comic.title.toLowerCase().includes(search))

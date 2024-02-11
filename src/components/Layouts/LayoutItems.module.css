@@ -1,0 +1,24 @@
+.paragraph {
+  color: black;
+}
+
+.section-layout {
+  background-color: var(--third-color);
+  padding-top: 8rem;
+}
+
+.section-layout h1 {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.bloc-search-pagination {
+  background-color: aqua;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bloc-search-pagination div:first-child {
+  width: 80%;
+}

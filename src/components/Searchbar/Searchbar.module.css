@@ -1,0 +1,15 @@
+.searchbar input {
+  width: 100%;
+  font-size: 1.1rem;
+  border: none;
+  padding: 0.7rem;
+  outline: none;
+  background-color: var(--primary-color);
+  color: var(--third-color);
+  border-radius: var(--border-radius);
+}
+
+.searchbar input::placeholder {
+  color: rgb(105, 105, 105);
+  font-weight: 200;
+}

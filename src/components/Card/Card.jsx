@@ -8,7 +8,7 @@ export default function Card({ thumbnail, name, description }) {
 
   // Réduction de la description ---
   let descriptionCut = "";
-  if (description.length !== 0) {
+  if (description && description.length !== 0) {
     for (let index = 0; index < description.length / 1.2; index++) {
       descriptionCut += description[index];
     }

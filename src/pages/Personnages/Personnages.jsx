@@ -1,12 +1,14 @@
+// Import styles
+import styles from "./Personnages.module.css";
+
 // import packages
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 
 // Import components --
-import SearchBar from "../../components/Searchbar/Searchbar";
-import Pagination from "../../components/Pagination/Pagination";
 import Character from "../../components/Character/Character";
+import LayoutItems from "../../components/Layouts/LayoutItems";
 
 export default function Personnages({ urlBack, myFavorites, setMyFavorites }) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,17 +21,18 @@ export default function Personnages({ urlBack, myFavorites, setMyFavorites }) {
 
   useEffect(() => {
     getAllCharacters();
-  }, [skip, search]);
+  }, [currentPage, search]);
 
   const getAllCharacters = async () => {
     try {
       const { data } = await axios.get(
-        `${urlBack}/characters?skip=${skip}&name=${search}`
+        `${urlBack}/characters?page=${currentPage}&name=${search}`
       );
       setCharacters(data.data);
       setCountTotal(data.data.count);
       setIsLoading(true);
     } catch (error) {
+      console.log(error);
       console.log(error.message);
     }
   };
@@ -37,25 +40,17 @@ export default function Personnages({ urlBack, myFavorites, setMyFavorites }) {
   return !isLoading ? (
     <p>En chargement...</p>
   ) : (
-    <section>
-      <SearchBar
-        item="characters"
-        setSearch={setSearch}
-        search={search}
-        setSearchParams={setSearchParams}
-      />
-      <p>
-        <span>{countTotal} characters found</span>
-      </p>
-      <Pagination
-        countTotal={countTotal}
-        currentPage={currentPage}
-        skip={skip}
-        setSkip={setSkip}
-        setSearchParams={setSearchParams}
-        setCurrentPage={setCurrentPage}
-      />
-      <div>
+    <LayoutItems
+      title="Characters"
+      countTotal={countTotal}
+      setSearch={setSearch}
+      setSearchParams={setSearchParams}
+      skip={skip}
+      setSkip={setSkip}
+      currentPage={currentPage}
+      setCurrentPage={setCurrentPage}
+    >
+      <ul className={styles["list-characters"]}>
         {characters.results
           .filter((character) => character.name.toLowerCase().includes(search))
           .map((character) => (
@@ -66,7 +61,7 @@ export default function Personnages({ urlBack, myFavorites, setMyFavorites }) {
               setMyFavorites={setMyFavorites}
             />
           ))}
-      </div>
-    </section>
+      </ul>
+    </LayoutItems>
   );
 }

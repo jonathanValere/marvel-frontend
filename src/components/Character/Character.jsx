@@ -8,7 +8,7 @@ import ButtonsFavorites from "../Buttons/ButtonsFavorites";
 
 export default function Character({ character, myFavorites, setMyFavorites }) {
   return (
-    <div>
+    <li>
       <Link to={`/character/${character._id}`}>
         <Card
           thumbnail={character.thumbnail}
@@ -22,6 +22,6 @@ export default function Character({ character, myFavorites, setMyFavorites }) {
         setMyFavorites={setMyFavorites}
         myFavorites={myFavorites}
       />
-    </div>
+    </li>
   );
 }
