@@ -6,10 +6,11 @@ import {
   faHeart,
   faChevronRight,
   faChevronLeft,
+  faStar,
   faKey,
   faListAlt,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faHeart, faChevronRight, faChevronLeft, faKey, faListAlt);
+library.add(faHeart, faChevronRight, faChevronLeft, faStar, faKey, faListAlt);
 
 //Import packages
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -51,7 +52,13 @@ function App() {
           />
           <Route
             path="/character/:characterId"
-            element={<PersonnageDetails urlBack={urlBack} />}
+            element={
+              <PersonnageDetails
+                urlBack={urlBack}
+                myFavorites={myFavorites}
+                setMyFavorites={setMyFavorites}
+              />
+            }
           />
           <Route
             path="/comics"

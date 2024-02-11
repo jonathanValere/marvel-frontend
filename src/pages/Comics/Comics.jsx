@@ -3,10 +3,14 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 
+// Import CSS
+import styles from "./Comics.module.css";
+
 // Import components
 import SearchBar from "../../components/Searchbar/Searchbar";
 import Pagination from "../../components/Pagination/Pagination";
 import Comic from "../../components/Comic/Comic";
+import LayoutItems from "../../components/Layouts/LayoutItems";
 
 export default function Comics({ urlBack, myFavorites, setMyFavorites }) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -27,7 +31,7 @@ export default function Comics({ urlBack, myFavorites, setMyFavorites }) {
   const getDataComics = async () => {
     try {
       const { data } = await axios.get(
-        `${urlBack}/comics?skip=${skip}&title=${search}`
+        `${urlBack}/comics?page=${currentPage}&title=${search}`
       );
       setCountTotal(data.data.count);
       setDataComics(data.data);
@@ -41,25 +45,17 @@ export default function Comics({ urlBack, myFavorites, setMyFavorites }) {
   return !isLoading ? (
     <p>En chargement...</p>
   ) : (
-    <section>
-      <SearchBar
-        item="comics"
-        setSearch={setSearch}
-        search={search}
-        setSearchParams={setSearchParams}
-      />
-      <Pagination
-        currentPage={currentPage}
-        countTotal={countTotal}
-        skip={skip}
-        setSkip={setSkip}
-        setSearchParams={setSearchParams}
-        setCurrentPage={setCurrentPage}
-      />
-      <p>
-        <span>{countTotal} comics found</span>
-      </p>
-      <div>
+    <LayoutItems
+      title="Comics"
+      countTotal={countTotal}
+      setSearch={setSearch}
+      setSearchParams={setSearchParams}
+      skip={skip}
+      setSkip={setSkip}
+      currentPage={currentPage}
+      setCurrentPage={setCurrentPage}
+    >
+      <ul className={styles["list-comics"]}>
         {dataComics.results
           .filter((comic) => comic.title.toLowerCase().includes(search))
           .sort()
@@ -71,7 +67,7 @@ export default function Comics({ urlBack, myFavorites, setMyFavorites }) {
               myFavorites={myFavorites}
             />
           ))}
-      </div>
-    </section>
+      </ul>
+    </LayoutItems>
   );
 }

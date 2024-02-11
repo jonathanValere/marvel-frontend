@@ -11,6 +11,7 @@ export default function ButtonsFavorites({
 }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
+  // console.log(comic, character, item, myFavorites, setMyFavorites);
   // Gestion  de l'ajout et de la suppression ---
   const addToFavorites = (id, nameItem) => {
     if (item === "character") {
@@ -28,11 +29,17 @@ export default function ButtonsFavorites({
     return setIsFavorite(true);
   };
 
-  const removeToFavorites = (nameItem) => {
+  const removeToFavorites = (id) => {
     if (item === "character") {
-      Cookies.remove(`character-${nameItem}`);
+      Cookies.remove(id);
       setMyFavorites(Cookies.get());
-      console.log(`Character ${nameItem} removed to favorites!`);
+      console.log(`Character removed to favorites!`);
+    }
+
+    if (item === "comic") {
+      Cookies.remove(id);
+      setMyFavorites(Cookies.get());
+      console.log(`Comic removed to favorites!`);
     }
     return setIsFavorite(false);
   };
@@ -41,10 +48,10 @@ export default function ButtonsFavorites({
   return isFavorite ? (
     <button
       onClick={() =>
-        removeToFavorites(item === "character" ? character.name : comic.title)
+        removeToFavorites(item === "character" ? character._id : comic._id)
       }
     >
-      Supprimer des favoris
+      Remove to my favorites
     </button>
   ) : (
     <button
@@ -55,7 +62,7 @@ export default function ButtonsFavorites({
         )
       }
     >
-      Ajouter en favoris
+      Add to my favorites
     </button>
   );
 }

@@ -1,4 +1,4 @@
-.list-characters {
+.list-comics {
   display: flex;
   justify-content: flex-start;
   align-items: start;
@@ -8,7 +8,7 @@
   color: var(--primary-color);
 }
 
-.list-characters li {
+.list-comics li {
   width: 168px;
   height: fit-content;
   border-radius: var(--border-radius);
@@ -16,7 +16,7 @@
   line-height: 1.3rem;
 }
 
-.list-characters li:hover {
+.list-comics li:hover {
   box-shadow: 8px 7px 0px black;
   transition: var(--transition);
   transform: scale(1.1);
@@ -24,11 +24,11 @@
   background-color: var(--fourth-color);
 }
 
-.list-characters li:hover p {
+.list-comics li:hover p {
   color: var(--third-color);
 }
 
-.list-characters img {
+.list-comics img {
   object-fit: cover;
   border-radius: var(--border-radius);
   width: 100%;
@@ -36,28 +36,17 @@
   margin-bottom: 0.7rem;
 }
 
-.list-characters p:last-child {
+.list-comics p:last-child {
   display: none;
   font-size: 1rem;
   font-weight: 200;
 }
 
-.list-characters p {
+.list-comics p {
   color: var(--primary-color);
   font-size: 1rem;
 }
 
-.list-characters li:hover a {
+.list-comics li:hover a {
   color: var(--third-color);
 }
-/*
-
-
-
-
-
-
-
-
-
- */

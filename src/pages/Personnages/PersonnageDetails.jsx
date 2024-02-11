@@ -8,8 +8,13 @@ import { Link, useParams } from "react-router-dom";
 
 // Import components --
 import Card from "../../components/Card/Card";
+import ButtonsFavorites from "../../components/Buttons/ButtonsFavorites";
 
-export default function PersonnageDetails({ urlBack }) {
+export default function PersonnageDetails({
+  urlBack,
+  myFavorites,
+  setMyFavorites,
+}) {
   const { characterId } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [character, setCharacter] = useState(); // Données sur le super-héros
@@ -65,7 +70,7 @@ export default function PersonnageDetails({ urlBack }) {
 
   return (
     <section className={styles["personnage-details"]}>
-      <div className={styles["background-character"]}>coucccccccc</div>
+      <div className={styles["background-character"]}></div>
       <div className="container">
         <div className={styles.bloc}>
           <div className={styles.details}>
@@ -79,7 +84,12 @@ export default function PersonnageDetails({ urlBack }) {
                     alt={character.name}
                     className={styles["image-character"]}
                   />
-                  <button>Add favorites</button>
+                  <ButtonsFavorites
+                    item="character"
+                    character={character}
+                    myFavorites={myFavorites}
+                    setMyFavorites={setMyFavorites}
+                  />
                 </div>
                 <aside>
                   <div className={styles["details-character"]}>

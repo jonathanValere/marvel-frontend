@@ -16,12 +16,6 @@ export default function Character({ character, myFavorites, setMyFavorites }) {
           description={character.description}
         />
       </Link>
-      <ButtonsFavorites
-        item="character"
-        character={character}
-        setMyFavorites={setMyFavorites}
-        myFavorites={myFavorites}
-      />
     </li>
   );
 }
