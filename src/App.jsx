@@ -28,6 +28,7 @@ import PersonnageDetails from "./pages/Personnages/PersonnageDetails";
 import Comics from "./pages/Comics/Comics";
 import Favoris from "./pages/Favoris/Favoris";
 import ComicDetails from "./pages/Comics/ComicDetails";
+import NotFountPage from "./pages/NotFound/NotFoundPage";
 
 function App() {
   // const urlBack = "https://site--marvel-backend--lkcrzmx4xyh5.code.run"; // Backend prod
@@ -81,6 +82,7 @@ function App() {
             }
           />
           <Route path="/favoris" element={<Favoris urlBack={urlBack} />} />
+          <Route path="*" element={<NotFountPage />} />
         </Routes>
       </main>
       <Footer />

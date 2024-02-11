@@ -1,0 +1,22 @@
+.page-not-found {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: 100;
+  font-family: "Rozha One", serif;
+}
+
+.bloc {
+  margin-top: 40vh;
+  text-align: center;
+  position: relative;
+}
+
+.page-not-found img {
+  opacity: 0.3;
+}
+
+.page-not-found p {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+}
