@@ -24,9 +24,8 @@ export default function LayoutItems({ ...props }) {
         />
       </div>
       <p className={styles.paragraph}>
-        <span>
-          {props.countTotal} {props.title} found
-        </span>
+        <span>{props.countTotal} </span>
+        {props.title} found
       </p>
       {props.children}
     </>

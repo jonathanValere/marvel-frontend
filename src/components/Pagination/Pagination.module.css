@@ -8,7 +8,7 @@
 .pagination button {
   background-color: var(--third-color);
   border: none;
-  padding: 0.6rem;
+  padding: 0.4rem 0.6rem;
   font-size: 1.1rem;
   font-weight: 200;
   border: 1px solid var(--fourth-color);
