@@ -2,8 +2,14 @@ import "./App.css";
 
 // Import fonts
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faHeart, faKey, faListAlt } from "@fortawesome/free-solid-svg-icons";
-library.add(faHeart, faKey, faListAlt);
+import {
+  faHeart,
+  faChevronRight,
+  faChevronLeft,
+  faKey,
+  faListAlt,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(faHeart, faChevronRight, faChevronLeft, faKey, faListAlt);
 
 //Import packages
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";

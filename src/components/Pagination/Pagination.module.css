@@ -1,0 +1,41 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--fourth-color);
+}
+
+.pagination button {
+  background-color: var(--third-color);
+  border: none;
+  padding: 0.6rem;
+  font-size: 1.1rem;
+  font-weight: 200;
+  border: 1px solid var(--fourth-color);
+  border-radius: var(--border-radius);
+  color: var(--fourth-color);
+  transition: var(--transition);
+}
+
+.pagination button:hover {
+  background-color: var(--fourth-color);
+  color: var(--third-color);
+  border-radius: var(--border-radius);
+}
+
+.pagination button:disabled {
+  border-color: var(--secondary-color);
+  background-color: rgb(111, 111, 111);
+  color: var(--third-color);
+  cursor: not-allowed;
+}
+
+.counter {
+  font-size: 4rem;
+  font-weight: 800;
+}
+
+.counter span {
+  font-size: 1.5rem;
+  font-weight: 300;
+}

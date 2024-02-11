@@ -14,11 +14,13 @@
 }
 
 .bloc-search-pagination {
-  background-color: aqua;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
 }
 
 .bloc-search-pagination div:first-child {
-  width: 80%;
+  width: 50%;
 }

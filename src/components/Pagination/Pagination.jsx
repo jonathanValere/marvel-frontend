@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styles from "./pagination.module.css";
+
 export default function Pagination({
   countTotal,
   currentPage,
@@ -30,19 +33,25 @@ export default function Pagination({
   // ----
 
   return (
-    <div>
+    <div className={styles.pagination}>
       <button
         onClick={() => handleClickPage("previous")}
         disabled={currentPage === 1}
       >
-        Précédent
+        <FontAwesomeIcon icon="chevron-left" />
       </button>
-      <span>{`Page ${currentPage}/${maxPage}`}</span>
+      <span className={styles.counter}>
+        {currentPage < 10 ? `0${currentPage}` : currentPage}
+        <span>/{maxPage}</span>
+        {/* {`Page ${
+        currentPage < 10 ? `0${currentPage}` : currentPage
+      }/${maxPage}`} */}
+      </span>
       <button
         onClick={() => handleClickPage("next")}
         disabled={currentPage === maxPage}
       >
-        Suivant
+        <FontAwesomeIcon icon="chevron-right" />
       </button>
     </div>
   );
