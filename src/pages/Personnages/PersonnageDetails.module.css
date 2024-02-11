@@ -1,0 +1,98 @@
+.personnage-details {
+  background-color: var(--primary-color);
+  padding-top: 10rem;
+  position: relative;
+}
+
+.background-character {
+  height: 45vh;
+  background-color: var(--third-color);
+  position: absolute;
+  width: 100%;
+  top: 0;
+}
+
+.bloc {
+  background-color: var(--primary-color);
+  padding: 2rem;
+  color: var(--third-color);
+  border-radius: var(--border-radius);
+  padding-bottom: 2rem;
+  position: relative;
+}
+
+.character button {
+  background-color: var(--fourth-color);
+  width: 100%;
+  border: none;
+  padding: 0.8rem;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  color: var(--third-color);
+}
+
+.details {
+  display: flex;
+  gap: 2rem;
+  z-index: 1;
+}
+
+.image-character {
+  width: 100%;
+  height: 24rem;
+  border-radius: var(--border-radius);
+}
+
+.details-character h1 {
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+}
+
+.details-character p {
+  font-size: 1.2rem;
+  line-height: 1.7rem;
+  font-weight: 300;
+}
+
+.details aside {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.list-comics ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.list-comics li {
+  width: 126px;
+}
+
+.list-comics img {
+  width: 8rem;
+  height: 200px;
+  object-fit: cover;
+  transition: var(--transition);
+  border-radius: var(--border-radius);
+}
+
+.list-comics p {
+  font-size: 0.9rem;
+  line-height: 1.1rem;
+}
+
+.list-comics p:last-child {
+  display: none;
+}
+
+.list-comics li:hover img {
+  box-shadow: 4px 3px 0px var(--fourth-color);
+  transition: var(--transition);
+  transform: scale(1.1);
+  margin-bottom: -5rem;
+}

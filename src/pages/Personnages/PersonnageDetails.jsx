@@ -1,3 +1,6 @@
+// Import CSS
+import styles from "./PersonnageDetails.module.css";
+
 // Import packages
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -61,23 +64,37 @@ export default function PersonnageDetails({ urlBack }) {
   // ----
 
   return (
-    <div>
-      {isLoading ? (
-        <p>En chargement...</p>
-      ) : (
-        <>
-          <img src={thumbnail} alt={character.name} />
-          <aside>
-            <div>
-              <p>{character.name}</p>
-              <p>{character.description}</p>
-            </div>
-            <div>
-              <ul>{list}</ul>
-            </div>
-          </aside>
-        </>
-      )}
-    </div>
+    <section className={styles["personnage-details"]}>
+      <div className={styles["background-character"]}>coucccccccc</div>
+      <div className="container">
+        <div className={styles.bloc}>
+          <div className={styles.details}>
+            {isLoading ? (
+              <p>En chargement...</p>
+            ) : (
+              <>
+                <div className={styles["character"]}>
+                  <img
+                    src={thumbnail}
+                    alt={character.name}
+                    className={styles["image-character"]}
+                  />
+                  <button>Add favorites</button>
+                </div>
+                <aside>
+                  <div className={styles["details-character"]}>
+                    <h1>{character.name}</h1>
+                    <p>{character.description}</p>
+                  </div>
+                  <div className={styles["list-comics"]}>
+                    <ul>{list}</ul>
+                  </div>
+                </aside>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
