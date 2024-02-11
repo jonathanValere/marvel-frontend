@@ -2,12 +2,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { MutatingDots } from "react-loader-spinner";
 
 // Import CSS
 import styles from "./Favoris.module.css";
 
 // Import components
 import PartFavorite from "../../components/PartFavorite/PartFavorite";
+import Loading from "../../components/Loading/Loading";
 
 export default function Favoris({ urlBack }) {
   // const [favoris, setFavoris] = useState(Cookies.get() || null); // Liste des favoris
@@ -52,11 +54,11 @@ export default function Favoris({ urlBack }) {
     <section className={styles["section-favorites"]}>
       <div className="container">
         <div className={styles["bloc-favorites"]}>
+          <h1>My favorites</h1>
           {isLoading ? (
-            <p>En chargement...</p>
+            <Loading secondaryColor="#fff" />
           ) : (
             <>
-              <h1>My favorites</h1>
               <PartFavorite
                 namePart="Characters"
                 item="character"

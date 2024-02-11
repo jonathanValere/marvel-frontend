@@ -11,10 +11,11 @@ import SearchBar from "../../components/Searchbar/Searchbar";
 import Pagination from "../../components/Pagination/Pagination";
 import Comic from "../../components/Comic/Comic";
 import LayoutItems from "../../components/Layouts/LayoutItems";
+import Loading from "../../components/Loading/Loading";
 
 export default function Comics({ urlBack, myFavorites, setMyFavorites }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [dataComics, setDataComics] = useState({});
   //searchParams.get("title") || "" permet de prendre la valeur dans l'URL
   const [search, setSearch] = useState(searchParams.get("title") || "");
@@ -35,39 +36,46 @@ export default function Comics({ urlBack, myFavorites, setMyFavorites }) {
       );
       setCountTotal(data.data.count);
       setDataComics(data.data);
-      setIsLoading(true);
+      setIsLoading(false);
     } catch (error) {
       console.log(error.message);
     }
   };
   // -----
 
-  return !isLoading ? (
-    <p>En chargement...</p>
-  ) : (
-    <LayoutItems
-      title="Comics"
-      countTotal={countTotal}
-      setSearch={setSearch}
-      setSearchParams={setSearchParams}
-      skip={skip}
-      setSkip={setSkip}
-      currentPage={currentPage}
-      setCurrentPage={setCurrentPage}
-    >
-      <ul className={styles["list-comics"]}>
-        {dataComics.results
-          .filter((comic) => comic.title.toLowerCase().includes(search))
-          .sort()
-          .map((comic) => (
-            <Comic
-              key={comic._id}
-              comic={comic}
-              setMyFavorites={setMyFavorites}
-              myFavorites={myFavorites}
-            />
-          ))}
-      </ul>
-    </LayoutItems>
+  return (
+    <section className={styles["section-comics"]}>
+      <div className="container">
+        <h1>Comics</h1>
+        {isLoading ? (
+          <Loading secondaryColor="#black" />
+        ) : (
+          <LayoutItems
+            title="Comics"
+            countTotal={countTotal}
+            setSearch={setSearch}
+            setSearchParams={setSearchParams}
+            skip={skip}
+            setSkip={setSkip}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          >
+            <ul className={styles["list-comics"]}>
+              {dataComics.results
+                .filter((comic) => comic.title.toLowerCase().includes(search))
+                .sort()
+                .map((comic) => (
+                  <Comic
+                    key={comic._id}
+                    comic={comic}
+                    setMyFavorites={setMyFavorites}
+                    myFavorites={myFavorites}
+                  />
+                ))}
+            </ul>
+          </LayoutItems>
+        )}
+      </div>
+    </section>
   );
 }

@@ -9,6 +9,7 @@ import { Link, useParams } from "react-router-dom";
 // Import components --
 import Card from "../../components/Card/Card";
 import ButtonsFavorites from "../../components/Buttons/ButtonsFavorites";
+import Loading from "../../components/Loading/Loading";
 
 export default function PersonnageDetails({
   urlBack,
@@ -75,7 +76,7 @@ export default function PersonnageDetails({
         <div className={styles.bloc}>
           <div className={styles.details}>
             {isLoading ? (
-              <p>En chargement...</p>
+              <Loading secondaryColor="#fff" />
             ) : (
               <>
                 <div className={styles["character"]}>

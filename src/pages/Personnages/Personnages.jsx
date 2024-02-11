@@ -9,6 +9,7 @@ import axios from "axios";
 // Import components --
 import Character from "../../components/Character/Character";
 import LayoutItems from "../../components/Layouts/LayoutItems";
+import Loading from "../../components/Loading/Loading";
 
 export default function Personnages({ urlBack, myFavorites, setMyFavorites }) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -37,31 +38,40 @@ export default function Personnages({ urlBack, myFavorites, setMyFavorites }) {
     }
   };
 
-  return !isLoading ? (
-    <p>En chargement...</p>
-  ) : (
-    <LayoutItems
-      title="Characters"
-      countTotal={countTotal}
-      setSearch={setSearch}
-      setSearchParams={setSearchParams}
-      skip={skip}
-      setSkip={setSkip}
-      currentPage={currentPage}
-      setCurrentPage={setCurrentPage}
-    >
-      <ul className={styles["list-characters"]}>
-        {characters.results
-          .filter((character) => character.name.toLowerCase().includes(search))
-          .map((character) => (
-            <Character
-              key={character._id}
-              character={character}
-              myFavorites={myFavorites}
-              setMyFavorites={setMyFavorites}
-            />
-          ))}
-      </ul>
-    </LayoutItems>
+  return (
+    <section className={styles["section-characters"]}>
+      <div className="container">
+        <h1>Characters</h1>
+        {!isLoading ? (
+          <Loading secondaryColor="#000" />
+        ) : (
+          <LayoutItems
+            title="Characters"
+            countTotal={countTotal}
+            setSearch={setSearch}
+            setSearchParams={setSearchParams}
+            skip={skip}
+            setSkip={setSkip}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          >
+            <ul className={styles["list-characters"]}>
+              {characters.results
+                .filter((character) =>
+                  character.name.toLowerCase().includes(search)
+                )
+                .map((character) => (
+                  <Character
+                    key={character._id}
+                    character={character}
+                    myFavorites={myFavorites}
+                    setMyFavorites={setMyFavorites}
+                  />
+                ))}
+            </ul>
+          </LayoutItems>
+        )}
+      </div>
+    </section>
   );
 }

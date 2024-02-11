@@ -8,6 +8,7 @@ import styles from "./ComicDetails.module.css";
 
 // Import components
 import ButtonsFavorites from "../../components/Buttons/ButtonsFavorites";
+import Loading from "../../components/Loading/Loading";
 
 export default function ComicDetails({ urlBack, myFavorites, setMyFavorites }) {
   const { comicId } = useParams();
@@ -40,7 +41,7 @@ export default function ComicDetails({ urlBack, myFavorites, setMyFavorites }) {
         <div className={styles.bloc}>
           <div className={styles.details}>
             {isLoading ? (
-              <p>En chargement...</p>
+              <Loading secondaryColor="#fff" />
             ) : (
               <>
                 <div className={styles["comic"]}>
