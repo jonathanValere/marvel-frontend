@@ -14,7 +14,7 @@ import Loading from "../../components/Loading/Loading";
 export default function Personnages({ urlBack, myFavorites, setMyFavorites }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [characters, setCharacters] = useState([]); // List of characters
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState(searchParams.get("name") || "");
   const [currentPage, setCurrentPage] = useState(1);
   const [skip, setSkip] = useState(searchParams.get("skip") || 0);
@@ -31,7 +31,7 @@ export default function Personnages({ urlBack, myFavorites, setMyFavorites }) {
       );
       setCharacters(data.data);
       setCountTotal(data.data.count);
-      setIsLoading(true);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
       console.log(error.message);
@@ -41,36 +41,38 @@ export default function Personnages({ urlBack, myFavorites, setMyFavorites }) {
   return (
     <section className={styles["section-characters"]}>
       <div className="container">
-        <h1>Characters</h1>
-        {!isLoading ? (
-          <Loading secondaryColor="#000" />
-        ) : (
-          <LayoutItems
-            title="Characters"
-            countTotal={countTotal}
-            setSearch={setSearch}
-            setSearchParams={setSearchParams}
-            skip={skip}
-            setSkip={setSkip}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          >
-            <ul className={styles["list-characters"]}>
-              {characters.results
-                .filter((character) =>
-                  character.name.toLowerCase().includes(search)
-                )
-                .map((character) => (
-                  <Character
-                    key={character._id}
-                    character={character}
-                    myFavorites={myFavorites}
-                    setMyFavorites={setMyFavorites}
-                  />
-                ))}
-            </ul>
-          </LayoutItems>
-        )}
+        <div className={styles.bloc}>
+          <h1>Characters</h1>
+          {isLoading ? (
+            <Loading secondaryColor="#000" />
+          ) : (
+            <LayoutItems
+              title="Characters"
+              countTotal={countTotal}
+              setSearch={setSearch}
+              setSearchParams={setSearchParams}
+              skip={skip}
+              setSkip={setSkip}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            >
+              <ul className={styles["list-characters"]}>
+                {characters.results
+                  .filter((character) =>
+                    character.name.toLowerCase().includes(search)
+                  )
+                  .map((character) => (
+                    <Character
+                      key={character._id}
+                      character={character}
+                      myFavorites={myFavorites}
+                      setMyFavorites={setMyFavorites}
+                    />
+                  ))}
+              </ul>
+            </LayoutItems>
+          )}
+        </div>
       </div>
     </section>
   );

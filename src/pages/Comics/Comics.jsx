@@ -46,35 +46,37 @@ export default function Comics({ urlBack, myFavorites, setMyFavorites }) {
   return (
     <section className={styles["section-comics"]}>
       <div className="container">
-        <h1>Comics</h1>
-        {isLoading ? (
-          <Loading secondaryColor="#black" />
-        ) : (
-          <LayoutItems
-            title="Comics"
-            countTotal={countTotal}
-            setSearch={setSearch}
-            setSearchParams={setSearchParams}
-            skip={skip}
-            setSkip={setSkip}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          >
-            <ul className={styles["list-comics"]}>
-              {dataComics.results
-                .filter((comic) => comic.title.toLowerCase().includes(search))
-                .sort()
-                .map((comic) => (
-                  <Comic
-                    key={comic._id}
-                    comic={comic}
-                    setMyFavorites={setMyFavorites}
-                    myFavorites={myFavorites}
-                  />
-                ))}
-            </ul>
-          </LayoutItems>
-        )}
+        <div className={styles.bloc}>
+          <h1>Comics</h1>
+          {isLoading ? (
+            <Loading secondaryColor="#black" />
+          ) : (
+            <LayoutItems
+              title="Comics"
+              countTotal={countTotal}
+              setSearch={setSearch}
+              setSearchParams={setSearchParams}
+              skip={skip}
+              setSkip={setSkip}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            >
+              <ul className={styles["list-comics"]}>
+                {dataComics.results
+                  .filter((comic) => comic.title.toLowerCase().includes(search))
+                  .sort()
+                  .map((comic) => (
+                    <Comic
+                      key={comic._id}
+                      comic={comic}
+                      setMyFavorites={setMyFavorites}
+                      myFavorites={myFavorites}
+                    />
+                  ))}
+              </ul>
+            </LayoutItems>
+          )}
+        </div>
       </div>
     </section>
   );
