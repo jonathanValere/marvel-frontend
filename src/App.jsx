@@ -72,7 +72,13 @@ function App() {
           />
           <Route
             path="/comic/:comicId"
-            element={<ComicDetails urlBack={urlBack} />}
+            element={
+              <ComicDetails
+                urlBack={urlBack}
+                myFavorites={myFavorites}
+                setMyFavorites={setMyFavorites}
+              />
+            }
           />
           <Route path="/favoris" element={<Favoris urlBack={urlBack} />} />
         </Routes>

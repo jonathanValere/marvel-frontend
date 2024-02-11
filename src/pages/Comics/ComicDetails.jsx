@@ -3,7 +3,13 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-export default function ComicDetails({ urlBack }) {
+// Import CSS
+import styles from "./ComicDetails.module.css";
+
+// Import components
+import ButtonsFavorites from "../../components/Buttons/ButtonsFavorites";
+
+export default function ComicDetails({ urlBack, myFavorites, setMyFavorites }) {
   const { comicId } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [comic, setComic] = useState(); // Données sur le comic
@@ -28,20 +34,39 @@ export default function ComicDetails({ urlBack }) {
   };
 
   return (
-    <div>
-      {isLoading ? (
-        <p>En chargement...</p>
-      ) : (
-        <>
-          <img src={thumbnail} alt={comic.title} />
-          <aside>
-            <div>
-              <p>{comic.name}</p>
-              <p>{comic.description}</p>
-            </div>
-          </aside>
-        </>
-      )}
-    </div>
+    <section className={styles["comic-details"]}>
+      <div className={styles["background-comic"]}></div>
+      <div className="container">
+        <div className={styles.bloc}>
+          <div className={styles.details}>
+            {isLoading ? (
+              <p>En chargement...</p>
+            ) : (
+              <>
+                <div className={styles["comic"]}>
+                  <img
+                    className={styles["image-comic"]}
+                    src={thumbnail}
+                    alt={comic.title}
+                  />
+                  <ButtonsFavorites
+                    item="comic"
+                    comic={comic}
+                    myFavorites={myFavorites}
+                    setMyFavorites={setMyFavorites}
+                  />
+                </div>
+                <aside>
+                  <div className={styles["details-comic"]}>
+                    <h1>{comic.title}</h1>
+                    <p>{comic.description}</p>
+                  </div>
+                </aside>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
