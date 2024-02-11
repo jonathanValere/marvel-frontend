@@ -8,7 +8,12 @@ import styles from "./ItemFavorite.module.css";
 
 export default function ItemFavorite({ ...props }) {
   const [isFavorite, setIsFavorite] = useState(true);
+
+  // Gestion image par default ---
+  const imageDefault =
+    "https://res.cloudinary.com/dmgktp9qs/image/upload/v1707599775/Marvel/ezbqe3yghr6laoi4ezte.png";
   const thumbnail = `${props.data.thumbnail.path}.${props.data.thumbnail.extension}`;
+  // ---
 
   // Retirer le character des favoris --
   const removeToFavorites = (id) => {
@@ -37,7 +42,15 @@ export default function ItemFavorite({ ...props }) {
                 : `/comic/${props.data._id}`
             }
           >
-            <img src={thumbnail} width={165} height={252} />
+            <img
+              src={
+                thumbnail.includes("image_not_available")
+                  ? imageDefault
+                  : thumbnail
+              }
+              width={165}
+              height={252}
+            />
           </Link>
           <button onClick={() => removeToFavorites(props.data._id)}>
             Remove to favorites

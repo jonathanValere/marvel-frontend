@@ -22,6 +22,11 @@ export default function PersonnageDetails({
   const [listComicsOfCharacter, setListComicsOfCharacter] = useState([]); // Liste des comics
   const [thumbnail, setThumbnail] = useState(""); // Récupérer l'image du super héros
 
+  // Gestion image par default ---
+  const imageDefault =
+    "https://res.cloudinary.com/dmgktp9qs/image/upload/v1707599775/Marvel/ezbqe3yghr6laoi4ezte.png";
+  // ---
+
   useEffect(() => {
     getCharacter();
   }, []);
@@ -81,7 +86,11 @@ export default function PersonnageDetails({
               <>
                 <div className={styles["character"]}>
                   <img
-                    src={thumbnail}
+                    src={
+                      thumbnail.includes("image_not_available")
+                        ? imageDefault
+                        : thumbnail
+                    }
                     alt={character.name}
                     className={styles["image-character"]}
                   />
@@ -95,7 +104,11 @@ export default function PersonnageDetails({
                 <aside>
                   <div className={styles["details-character"]}>
                     <h1>{character.name}</h1>
-                    <p>{character.description}</p>
+                    <p>
+                      {character.description
+                        ? character.description
+                        : "No information"}
+                    </p>
                   </div>
                   <div className={styles["list-comics"]}>
                     <ul>{list}</ul>
