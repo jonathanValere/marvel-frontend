@@ -3,8 +3,12 @@ import Cookies from "js-cookie";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+// Import CSS
+import styles from "./ItemFavorite.module.css";
+
 export default function ItemFavorite({ ...props }) {
   const [isFavorite, setIsFavorite] = useState(true);
+  const thumbnail = `${props.data.thumbnail.path}.${props.data.thumbnail.extension}`;
 
   // Retirer le character des favoris --
   const removeToFavorites = (id) => {
@@ -24,36 +28,21 @@ export default function ItemFavorite({ ...props }) {
 
   return (
     isFavorite && (
-      <li>
-        {props.item === "character" ? (
-          <>
-            <Link to={`/character/${props.data._id}`}>
-              <img
-                src={`${props.data.thumbnail.path}.${props.data.thumbnail.extension}`}
-                width={100}
-                height={150}
-              />
-              <p>{props.data.name}</p>
-            </Link>
-            <button onClick={() => removeToFavorites(props.data._id)}>
-              Retirer des favoris
-            </button>
-          </>
-        ) : (
-          <>
-            <Link to={`/comic/${props.data._id}`}>
-              <img
-                src={`${props.data.thumbnail.path}.${props.data.thumbnail.extension}`}
-                width={100}
-                height={150}
-              />
-              <p>{props.data.title}</p>
-            </Link>
-            <button onClick={() => removeToFavorites(props.data._id)}>
-              Retirer des favoris
-            </button>
-          </>
-        )}
+      <li className={styles["item-favorite"]}>
+        <>
+          <Link
+            to={
+              props.item === "character"
+                ? `/character/${props.data._id}`
+                : `/comic/${props.data._id}`
+            }
+          >
+            <img src={thumbnail} width={165} height={252} />
+          </Link>
+          <button onClick={() => removeToFavorites(props.data._id)}>
+            Remove to favorites
+          </button>
+        </>
       </li>
     )
   );

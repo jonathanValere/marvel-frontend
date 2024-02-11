@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 
+// Import CSS
+import styles from "./Favoris.module.css";
+
 // Import components
 import PartFavorite from "../../components/PartFavorite/PartFavorite";
 
@@ -45,17 +48,25 @@ export default function Favoris({ urlBack }) {
   };
   // --
 
-  return isLoading ? (
-    <p>En chargement...</p>
-  ) : (
-    <div>
-      <h1>My favorites</h1>
-      <PartFavorite
-        namePart="Characters"
-        item="character"
-        datas={dataCharacters}
-      />
-      <PartFavorite namePart="Comics" item="comic" datas={dataComics} />
-    </div>
+  return (
+    <section className={styles["section-favorites"]}>
+      <div className="container">
+        <div className={styles["bloc-favorites"]}>
+          {isLoading ? (
+            <p>En chargement...</p>
+          ) : (
+            <>
+              <h1>My favorites</h1>
+              <PartFavorite
+                namePart="Characters"
+                item="character"
+                datas={dataCharacters}
+              />
+              <PartFavorite namePart="Comics" item="comic" datas={dataComics} />
+            </>
+          )}
+        </div>
+      </div>
+    </section>
   );
 }

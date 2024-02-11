@@ -1,0 +1,27 @@
+.item-favorite {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-favorite img {
+  object-fit: cover;
+  border-radius: var(--border-radius);
+}
+
+.item-favorite img:hover {
+  box-shadow: 4px 3px 0px var(--third-color), 8px 7px 0px var(--fourth-color);
+  /* box-shadow: 4px 3px 0px var(--third-color); */
+  transition: var(--transition);
+  transform: scale(1.1);
+}
+
+.item-favorite button {
+  background-color: var(--fourth-color);
+  border: none;
+  margin-top: 1.5rem;
+  padding: 0.7rem 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: var(--border-radius);
+  color: var(--third-color);
+}

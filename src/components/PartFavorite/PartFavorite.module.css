@@ -1,0 +1,22 @@
+.part-favorite {
+  width: 100%;
+}
+
+.part-favorite h2 {
+  font-size: 1.8rem;
+  margin: 2rem 0;
+}
+
+.list-favorites {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.counter {
+  color: var(--third-color);
+  margin-left: 1rem;
+  background-color: var(--fourth-color);
+  padding: 3px 18px;
+  border-radius: 50%;
+}
