@@ -11,7 +11,6 @@ export default function Navigation() {
 
   const handleDisplayMenu = () => {
     setdisplayMenu(!displayMenu);
-    return console.log("display menu");
   };
 
   return (
@@ -27,7 +26,7 @@ export default function Navigation() {
         <Link to="/characters">Characters</Link>
         <Link to="/comics">Comics</Link>
         <Link to="/favoris">Favorites</Link>
-        <Link to="/favoris" className={styles.signup}>
+        <Link to="/signup" className={styles.signup}>
           SignUp
         </Link>
       </nav>
