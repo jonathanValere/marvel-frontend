@@ -160,25 +160,19 @@
   }
 
   .card:hover p {
-    display: initial;
-  }
-
-  .view-all:hover {
-    background-color: initial;
-    color: initial;
+    display: none;
   }
 
   .card:hover {
-    box-shadow: initial;
-    transition: initial;
-    transform: initial;
-    z-index: initial;
-    background-color: initial;
-    top: initial;
+    box-shadow: none;
+    transform: none;
+    z-index: none;
+    background-color: none;
+    top: none;
     min-width: initial;
   }
 
   .card:hover a {
-    color: initial;
+    color: none;
   }
 }
