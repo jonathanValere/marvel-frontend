@@ -4,7 +4,6 @@ import styles from "./pagination.module.css";
 export default function Pagination({
   countTotal,
   currentPage,
-  skip,
   setSkip,
   setSearchParams,
   setCurrentPage,
@@ -43,9 +42,6 @@ export default function Pagination({
       <span className={styles.counter}>
         {currentPage < 10 ? `0${currentPage}` : currentPage}
         <span>/{maxPage}</span>
-        {/* {`Page ${
-        currentPage < 10 ? `0${currentPage}` : currentPage
-      }/${maxPage}`} */}
       </span>
       <button
         onClick={() => handleClickPage("next")}

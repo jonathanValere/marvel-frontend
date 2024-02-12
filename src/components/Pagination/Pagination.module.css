@@ -24,7 +24,7 @@
 }
 
 .pagination button:disabled {
-  border-color: var(--secondary-color);
+  border-color: rgb(111, 111, 111);
   background-color: rgb(111, 111, 111);
   color: var(--third-color);
   cursor: not-allowed;
