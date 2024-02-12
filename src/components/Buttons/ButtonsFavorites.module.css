@@ -15,3 +15,9 @@
   background-color: var(--fourth-color);
   color: var(--third-color);
 }
+
+@media (max-width: 760px) {
+  .button:hover {
+    pointer-events: none;
+  }
+}

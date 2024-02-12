@@ -135,6 +135,9 @@ button {
 }
 
 @media (max-width: 768px) {
+  .list-items li:hover {
+    pointer-events: none;
+  }
 }
 
 /* --------------- MAX 640px -------------------- */
@@ -276,9 +279,14 @@ button {
 
 .list-comics li:hover img {
   box-shadow: 4px 3px 0px var(--fourth-color);
-
   transform: scale(1.1);
   margin-bottom: -5rem;
+}
+
+@media (max-width: 760px) {
+  .list-comics li:hover {
+    pointer-events: none;
+  }
 }
 
 @media (max-width: 640px) {

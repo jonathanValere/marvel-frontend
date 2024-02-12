@@ -25,6 +25,12 @@
   color: var(--third-color);
 }
 
+@media (max-width: 760px) {
+  .item-favorite img:hover {
+    pointer-events: none;
+  }
+}
+
 @media (max-width: 640px) {
   .item-favorite img {
     width: 100%;
