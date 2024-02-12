@@ -10,7 +10,6 @@
 
 .item-favorite img:hover {
   box-shadow: 4px 3px 0px var(--third-color), 8px 7px 0px var(--fourth-color);
-  /* box-shadow: 4px 3px 0px var(--third-color); */
   transition: var(--transition);
   transform: scale(1.1);
 }
