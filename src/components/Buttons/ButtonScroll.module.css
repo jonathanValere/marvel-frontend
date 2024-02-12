@@ -11,3 +11,17 @@
   background-color: var(--fourth-color);
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .button-scroll {
+    bottom: 5vh;
+    right: 5vh;
+  }
+}
+
+@media (max-width: 640px) {
+  .button-scroll {
+    bottom: 2vh;
+    right: 2vh;
+  }
+}

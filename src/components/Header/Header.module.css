@@ -11,3 +11,21 @@ header {
   z-index: 1000;
   /* background-color: transparent; */
 }
+
+header img {
+  width: 7rem;
+}
+
+@media (max-width: 768px) {
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    padding: 0.7rem 2rem;
+  }
+
+  header img {
+    width: 5rem;
+  }
+}

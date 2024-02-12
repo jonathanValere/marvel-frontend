@@ -1,6 +1,5 @@
 .bloc {
-  padding-top: 4rem;
-  height: 35rem;
+  padding: 4rem 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -8,7 +7,9 @@
 
 .mainHomepage {
   background-color: var(--third-color);
+  height: 90%;
 }
+
 .title-bloc {
   display: flex;
   align-items: center;
@@ -69,12 +70,10 @@
   border-radius: var(--border-radius);
   width: 200px;
   height: 200px;
-  /* margin-bottom: 0.7rem; */
 }
 
 .card div:nth-child(1) {
   display: flex;
-  gap: 1rem;
 }
 
 .card p {
@@ -109,4 +108,62 @@
 
 .card:hover a {
   color: var(--third-color);
+}
+
+@media (max-width: 1124px) {
+  .bloc {
+    width: 100%;
+  }
+
+  .mainHomepage h2 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .bloc {
+    /* height: 22rem; */
+  }
+
+  .mainHomepage h2 {
+    font-size: 1.8rem;
+  }
+
+  .mainHomepage h2 span {
+    font-size: 1.8rem;
+  }
+
+  .view-all {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .list-characters {
+    display: flex;
+    align-items: start;
+    overflow-x: scroll;
+    flex-shrink: 0;
+    gap: 0.1rem;
+    padding: 1rem 0rem;
+    font-weight: 700;
+    position: relative;
+  }
+
+  .card {
+    padding: 0rem;
+  }
+
+  .card img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .card div:nth-child(1) {
+    gap: 0.3rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .bloc {
+  }
 }

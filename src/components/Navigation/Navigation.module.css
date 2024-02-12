@@ -6,6 +6,10 @@
   font-size: 1rem;
 }
 
+.icon-menu {
+  display: none;
+}
+
 .signup {
   padding: 0.7rem;
   border: 1px solid var(--fourth-color);
@@ -21,4 +25,56 @@
 .signup:hover {
   background-color: var(--fourth-color);
   color: var(--third-color);
+}
+
+@media (max-width: 768px) {
+  .icon-menu {
+    display: initial;
+    font-size: 1.1rem;
+  }
+
+  .display-menu {
+    display: none;
+  }
+
+  .navigation {
+    /* display: none; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--secondary-color);
+    width: 35vw;
+    height: 100vh;
+    z-index: -1;
+    padding: 3rem 2rem;
+    flex-direction: column;
+    align-items: normal;
+    font-weight: 300;
+    font-size: 1rem;
+    margin-top: 2.8rem;
+  }
+
+  .signup {
+    padding: 0.7rem;
+    border: 1px solid var(--fourth-color);
+    border-radius: var(--border-radius);
+    color: var(--fourth-color);
+  }
+
+  .navigation a:hover:not(:last-child) {
+    color: var(--fourth-color);
+    transition: var(--transition);
+  }
+
+  .signup:hover {
+    background-color: var(--fourth-color);
+    color: var(--third-color);
+  }
+}
+
+@media (max-width: 640px) {
+  .navigation {
+    width: 100vw;
+    height: fit-content;
+  }
 }

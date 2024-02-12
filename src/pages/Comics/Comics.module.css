@@ -15,10 +15,10 @@
 
 .list-comics {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: start;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 1.1rem;
   font-weight: 700;
   color: var(--primary-color);
 }
@@ -27,12 +27,12 @@
   width: 168px;
   height: fit-content;
   border-radius: var(--border-radius);
-  padding: 0.5rem;
   line-height: 1.3rem;
 }
 
 .list-comics li:hover {
   box-shadow: 8px 7px 0px black;
+  padding: 0.3rem 0.3rem 0.8rem 0.3rem;
   transition: var(--transition);
   transform: scale(1.1);
   z-index: 999;
@@ -64,4 +64,35 @@
 
 .list-comics li:hover a {
   color: var(--third-color);
+}
+
+@media (max-width: 760px) {
+  .list-comics {
+    justify-content: space-around;
+  }
+}
+
+@media (max-width: 640px) {
+  .section-comics h1 {
+    padding-top: 6rem;
+  }
+
+  .list-comics {
+    gap: 2rem;
+  }
+
+  .list-comics li {
+    width: 100%;
+    height: fit-content;
+    border-radius: var(--border-radius);
+    line-height: 1.7rem;
+  }
+
+  .list-comics li p {
+    font-size: 1.3rem;
+  }
+
+  .list-comics {
+    justify-content: space-around;
+  }
 }

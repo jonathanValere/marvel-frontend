@@ -12,7 +12,7 @@ export default function Header() {
   return (
     <header>
       <Link to="/">
-        <img src={Logo} alt="Logo Marvel" width={120} />
+        <img src={Logo} alt="Logo Marvel" />
       </Link>
       <Navigation />
     </header>
