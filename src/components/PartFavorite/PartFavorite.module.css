@@ -1,10 +1,11 @@
 .part-favorite {
   width: 100%;
+  margin-bottom: 4rem;
 }
 
 .part-favorite h2 {
   font-size: 1.8rem;
-  margin: 2rem 0;
+  margin: 2rem 0 1rem 0;
 }
 
 .list-favorites {
@@ -14,9 +15,13 @@
 }
 
 .counter {
-  color: var(--third-color);
+  color: var(--fourth-color);
   margin-left: 1rem;
-  background-color: var(--fourth-color);
-  padding: 3px 18px;
-  border-radius: 50%;
+}
+
+@media (max-width: 640px) {
+  .list-favorites {
+    flex-direction: column;
+    gap: 3rem;
+  }
 }

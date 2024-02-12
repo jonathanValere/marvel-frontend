@@ -25,3 +25,13 @@
   border-radius: var(--border-radius);
   color: var(--third-color);
 }
+
+@media (max-width: 640px) {
+  .item-favorite img {
+    width: 100%;
+  }
+
+  .item-favorite button {
+    margin-top: 1rem;
+  }
+}
