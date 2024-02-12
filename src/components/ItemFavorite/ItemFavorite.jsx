@@ -4,7 +4,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // Import CSS
-import styles from "./ItemFavorite.module.css";
+// import styles from "./ItemFavorite.module.css";
+import "./ItemFavorite.css";
 
 export default function ItemFavorite({ ...props }) {
   const [isFavorite, setIsFavorite] = useState(true);
@@ -33,7 +34,7 @@ export default function ItemFavorite({ ...props }) {
 
   return (
     isFavorite && (
-      <li className={styles["item-favorite"]}>
+      <li className="item-favorite">
         <>
           <Link
             to={
