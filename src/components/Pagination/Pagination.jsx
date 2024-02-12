@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styles from "./pagination.module.css";
+import styles from "./Pagination.module.css";
 
 export default function Pagination({
   countTotal,
