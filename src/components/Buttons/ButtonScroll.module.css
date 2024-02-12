@@ -21,7 +21,7 @@
 
 @media (max-width: 640px) {
   .button-scroll {
-    bottom: 2vh;
+    bottom: 12vh;
     right: 2vh;
   }
 }

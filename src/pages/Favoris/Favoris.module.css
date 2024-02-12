@@ -1,15 +1,10 @@
-.bloc-favorites {
-  margin-top: 8rem;
-  margin-bottom: 6rem;
+.section-favorites {
+  background-color: var(--primary-color);
+  padding: 8rem 0rem 6rem 0rem;
+  min-height: 100vh;
 }
 
 .section-favorites h1 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
-}
-
-@media (max-width: 640px) {
-  .bloc-favorites {
-    margin: 6rem 0;
-  }
 }

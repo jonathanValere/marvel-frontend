@@ -121,10 +121,6 @@
 }
 
 @media (max-width: 768px) {
-  .bloc {
-    /* height: 22rem; */
-  }
-
   .mainHomepage h2 {
     font-size: 1.8rem;
   }
@@ -160,10 +156,5 @@
 
   .card div:nth-child(1) {
     gap: 0.3rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .bloc {
   }
 }
