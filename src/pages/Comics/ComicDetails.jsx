@@ -9,6 +9,7 @@ import styles from "./ComicDetails.module.css";
 // Import components
 import ButtonsFavorites from "../../components/Buttons/ButtonsFavorites";
 import Loading from "../../components/Loading/Loading";
+import ButtonStar from "../../components/Buttons/ButtonStar";
 
 export default function ComicDetails({ urlBack, myFavorites, setMyFavorites }) {
   const { comicId } = useParams();
@@ -50,16 +51,23 @@ export default function ComicDetails({ urlBack, myFavorites, setMyFavorites }) {
                     src={thumbnail}
                     alt={comic.title}
                   />
-                  <ButtonsFavorites
-                    item="comic"
-                    comic={comic}
-                    myFavorites={myFavorites}
-                    setMyFavorites={setMyFavorites}
-                  />
+                  {!myFavorites[comic._id] && (
+                    <ButtonsFavorites
+                      item="comic"
+                      comic={comic}
+                      myFavorites={myFavorites}
+                      setMyFavorites={setMyFavorites}
+                    />
+                  )}
                 </div>
                 <aside>
                   <div className={styles["details-comic"]}>
-                    <h1>{comic.title}</h1>
+                    <div className={styles["details-title"]}>
+                      <h1>{comic.title}</h1>
+                      {myFavorites[comic._id] && (
+                        <ButtonStar setMyFavorites={setMyFavorites} />
+                      )}
+                    </div>
                     <p>{comic.description}</p>
                   </div>
                 </aside>

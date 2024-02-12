@@ -8,6 +8,7 @@ export default function Comic({ comic }) {
       <Link to={`/comic/${comic._id}`}>
         <Card
           key={comic._id}
+          id={comic._id}
           thumbnail={comic.thumbnail}
           name={comic.title}
           description={comic.description}

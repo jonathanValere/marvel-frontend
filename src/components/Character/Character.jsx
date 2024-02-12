@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 
 // Import components
 import Card from "../Card/Card";
-import ButtonsFavorites from "../Buttons/ButtonsFavorites";
 
 export default function Character({ character, myFavorites, setMyFavorites }) {
   return (
     <li>
       <Link to={`/character/${character._id}`}>
         <Card
+          id={character._id}
           thumbnail={character.thumbnail}
           name={character.name}
           description={character.description}

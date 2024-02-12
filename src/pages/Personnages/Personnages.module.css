@@ -19,7 +19,6 @@
   justify-content: flex-start;
   align-items: start;
   flex-wrap: wrap;
-  /* gap: 0.5rem; */
   font-weight: 700;
   color: var(--primary-color);
 }

@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { MutatingDots } from "react-loader-spinner";
 
 // Import CSS
 import styles from "./Favoris.module.css";

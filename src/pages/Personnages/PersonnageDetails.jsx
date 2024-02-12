@@ -10,6 +10,7 @@ import { Link, useParams } from "react-router-dom";
 import Card from "../../components/Card/Card";
 import ButtonsFavorites from "../../components/Buttons/ButtonsFavorites";
 import Loading from "../../components/Loading/Loading";
+import ButtonStar from "../../components/Buttons/ButtonStar";
 
 export default function PersonnageDetails({
   urlBack,
@@ -74,6 +75,8 @@ export default function PersonnageDetails({
   ));
   // ----
 
+  // console.log(myFavorites[character._id]);
+
   return (
     <section className={styles["personnage-details"]}>
       <div className={styles["background-character"]}></div>
@@ -94,16 +97,22 @@ export default function PersonnageDetails({
                     alt={character.name}
                     className={styles["image-character"]}
                   />
-                  <ButtonsFavorites
-                    item="character"
-                    character={character}
-                    myFavorites={myFavorites}
-                    setMyFavorites={setMyFavorites}
-                  />
+                  {!myFavorites[character._id] && (
+                    <ButtonsFavorites
+                      item="character"
+                      character={character}
+                      myFavorites={myFavorites}
+                      setMyFavorites={setMyFavorites}
+                    />
+                  )}
                 </div>
                 <aside>
                   <div className={styles["details-character"]}>
-                    <h1>{character.name}</h1>
+                    <div className={styles["details-title"]}>
+                      <h1>{character.name}</h1>
+                      {/* Si character fait partie des favoris, afficher étoile */}
+                      {myFavorites[character._id] && <ButtonStar />}
+                    </div>
                     <p>
                       {character.description
                         ? character.description

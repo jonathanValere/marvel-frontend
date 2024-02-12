@@ -2,6 +2,9 @@
 import { useState } from "react";
 import Cookies from "js-cookie";
 
+// Import CSS
+import styles from "./ButtonsFavorites.module.css";
+
 export default function ButtonsFavorites({
   comic,
   character,
@@ -47,6 +50,7 @@ export default function ButtonsFavorites({
 
   return isFavorite ? (
     <button
+      className={styles.button}
       onClick={() =>
         removeToFavorites(item === "character" ? character._id : comic._id)
       }
@@ -55,6 +59,7 @@ export default function ButtonsFavorites({
     </button>
   ) : (
     <button
+      className={styles.button}
       onClick={() =>
         addToFavorites(
           item === "character" ? character._id : comic._id,

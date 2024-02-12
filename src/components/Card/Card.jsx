@@ -1,6 +1,13 @@
-export default function Card({ thumbnail, name, description }) {
+import styles from "./Card.module.css";
+
+import Cookies from "js-cookie";
+
+import ButtonStar from "../Buttons/ButtonStar";
+
+export default function Card({ thumbnail, name, description, id }) {
   // Pour les comics le name est égale au title
 
+  const isFavorite = Cookies.get(id);
   // Gestion image par default
   const imageDefault =
     "https://res.cloudinary.com/dmgktp9qs/image/upload/v1707599775/Marvel/ezbqe3yghr6laoi4ezte.png";
@@ -15,8 +22,9 @@ export default function Card({ thumbnail, name, description }) {
   }
   // ---
   return (
-    <div className="card">
-      <div className="card-informations">
+    <div className={styles.card}>
+      {isFavorite && <ButtonStar />}
+      <div>
         <img
           src={
             imageThumbnail.includes("image_not_available")
