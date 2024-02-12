@@ -39,9 +39,9 @@ export default function Personnages({ urlBack, myFavorites, setMyFavorites }) {
   };
 
   return (
-    <section className={styles["section-characters"]}>
+    <section className="section-all-items">
       <div className="container">
-        <div className={styles.bloc}>
+        <div className="section-all-items-bloc">
           <h1>Characters</h1>
           {isLoading ? (
             <Loading secondaryColor="#000" />
@@ -56,7 +56,7 @@ export default function Personnages({ urlBack, myFavorites, setMyFavorites }) {
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
             >
-              <ul className={styles["list-characters"]}>
+              <ul className="list-items">
                 {characters.results
                   .filter((character) =>
                     character.name.toLowerCase().includes(search)

@@ -36,18 +36,18 @@ export default function ComicDetails({ urlBack, myFavorites, setMyFavorites }) {
   };
 
   return (
-    <section className={styles["comic-details"]}>
-      <div className={styles["background-comic"]}></div>
+    <section className="section-details-item">
+      <div className="section-details-item-background"></div>
       <div className="container">
-        <div className={styles.bloc}>
-          <div className={styles.details}>
+        <div className="section-details-item-bloc">
+          <div className="all-details">
             {isLoading ? (
               <Loading secondaryColor="#fff" />
             ) : (
               <>
-                <div className={styles["comic"]}>
+                <div>
                   <img
-                    className={styles["image-comic"]}
+                    className="item-image"
                     src={thumbnail}
                     alt={comic.title}
                   />
@@ -61,8 +61,8 @@ export default function ComicDetails({ urlBack, myFavorites, setMyFavorites }) {
                   )}
                 </div>
                 <aside>
-                  <div className={styles["details-comic"]}>
-                    <div className={styles["details-title"]}>
+                  <div className="details-item">
+                    <div className="details-title">
                       <h1>{comic.title}</h1>
                       {myFavorites[comic._id] && (
                         <ButtonStar setMyFavorites={setMyFavorites} />

@@ -64,3 +64,273 @@ main {
 
 @media (max-width: 640px) {
 }
+
+/* CARD pages characters/Comics ---------------------------------*/
+
+.section-all-items {
+  background-color: var(--third-color);
+  position: relative;
+}
+
+.section-all-items-bloc {
+  padding-bottom: 6rem;
+}
+
+.section-all-items h1 {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  padding-top: 8rem;
+}
+
+.list-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.list-items li {
+  width: 168px;
+  height: fit-content;
+  border-radius: var(--border-radius);
+  line-height: 1.3rem;
+}
+
+.list-items li:hover {
+  box-shadow: 8px 7px 0px black;
+  padding: 0.3rem 0.3rem 0.8rem 0.3rem;
+  transition: var(--transition);
+  transform: scale(1.1);
+  z-index: 999;
+  background-color: var(--fourth-color);
+}
+
+.list-items li:hover p {
+  color: var(--third-color);
+}
+
+.list-items img {
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  width: 100%;
+  height: 252px;
+  margin-bottom: 0.7rem;
+}
+
+.list-items p:last-child {
+  display: none;
+  font-size: 1rem;
+  font-weight: 200;
+}
+
+.list-items p {
+  color: var(--primary-color);
+  font-size: 1rem;
+}
+
+.list-items li:hover a {
+  color: var(--third-color);
+}
+
+@media (max-width: 768px) {
+}
+
+/* --------------- MAX 640px -------------------- */
+
+@media (max-width: 640px) {
+  .section-all-items h1 {
+    padding-top: 6rem;
+  }
+  .list-items {
+    gap: 2rem;
+  }
+  .list-items li {
+    width: 100%;
+    height: fit-content;
+    line-height: 1.8rem;
+    background-color: #ececec;
+    padding: 0.5rem 0.5rem 1rem 0.5rem;
+  }
+  .list-items li p {
+    font-size: 1.4rem;
+  }
+}
+
+/* Page Details (comic ou character) ------------------------ */
+
+.section-details-item {
+  background-color: var(--primary-color);
+  padding-top: 10rem;
+  position: relative;
+}
+
+.section-details-item-background {
+  height: 45vh;
+  background-color: var(--third-color);
+  position: absolute;
+  width: 100%;
+  top: 0;
+}
+
+.section-details-item-bloc {
+  background-color: var(--primary-color);
+  padding: 2rem;
+  color: var(--third-color);
+  border-radius: var(--border-radius);
+  padding-bottom: 2rem;
+  position: relative;
+  margin-bottom: 4rem;
+}
+
+.all-details {
+  display: flex;
+  gap: 2rem;
+  z-index: 1;
+}
+
+.item-image {
+  width: 23rem;
+  height: 24rem;
+  border-radius: var(--border-radius);
+  object-fit: cover;
+}
+
+/* A revoir ---- */
+.item button {
+  background-color: var(--third-color);
+  width: 14rem;
+  border: none;
+  padding: 0.8rem 0;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: 400;
+  border-radius: var(--border-radius);
+  color: var(--fourth-color);
+}
+
+/* .details aside {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+} */
+
+.details-title {
+  position: relative;
+}
+
+.details-title svg {
+  position: absolute;
+  top: 0.5rem;
+  right: 0;
+  font-size: 1.5rem;
+  color: rgb(255, 234, 4);
+}
+
+.details-item h1 {
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+}
+
+.details-item p {
+  font-size: 1.1rem;
+  line-height: 1.7rem;
+  font-weight: 300;
+}
+
+.list-comics h2 {
+  font-size: 2rem;
+  margin-top: 2rem;
+  color: var(--fourth-color);
+}
+
+.list-comics ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.list-comics li {
+  width: 126px;
+}
+
+.list-comics img {
+  width: 8rem;
+  height: 200px;
+  object-fit: cover;
+  transition: var(--transition);
+  border-radius: var(--border-radius);
+}
+
+.list-comics p {
+  font-size: 0.9rem;
+  line-height: 1.1rem;
+}
+
+.list-comics p:last-child {
+  display: none;
+}
+
+.list-comics li:hover img {
+  box-shadow: 4px 3px 0px var(--fourth-color);
+
+  transform: scale(1.1);
+  margin-bottom: -5rem;
+}
+
+@media (max-width: 640px) {
+  .section-details-item {
+    padding-top: 6rem;
+  }
+  .section-details-item-background {
+    display: none;
+  }
+
+  .section-details-item-bloc {
+    padding: 0;
+    border-radius: var(--border-radius);
+    position: relative;
+    margin-bottom: 4rem;
+  }
+
+  .all-details {
+    display: initial;
+  }
+
+  .item-image {
+    width: 100%;
+    height: 15rem;
+  }
+
+  .details-item h1 {
+    font-size: 2.8rem;
+    margin: 2rem 0;
+  }
+
+  .list-comics ul {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .list-comics li {
+    width: 100%;
+  }
+
+  .list-comics img {
+    width: 100%;
+    height: 10rem;
+  }
+
+  .list-comics p {
+    margin-top: 0.4rem;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    font-weight: 500;
+    /* color: var(--fourth-color); */
+  }
+}

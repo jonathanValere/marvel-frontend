@@ -42,9 +42,9 @@ export default function Comics({ urlBack, myFavorites, setMyFavorites }) {
   // -----
 
   return (
-    <section className={styles["section-comics"]}>
+    <section className="section-all-items">
       <div className="container">
-        <div className={styles.bloc}>
+        <div className="section-all-items-bloc">
           <h1>Comics</h1>
           {isLoading ? (
             <Loading secondaryColor="#black" />
@@ -59,7 +59,7 @@ export default function Comics({ urlBack, myFavorites, setMyFavorites }) {
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
             >
-              <ul className={styles["list-comics"]}>
+              <ul className="list-items">
                 {dataComics.results
                   .filter((comic) => comic.title.toLowerCase().includes(search))
                   .sort()

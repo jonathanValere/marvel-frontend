@@ -78,16 +78,16 @@ export default function PersonnageDetails({
   // console.log(myFavorites[character._id]);
 
   return (
-    <section className={styles["personnage-details"]}>
-      <div className={styles["background-character"]}></div>
+    <section className="section-details-item">
+      <div className="section-details-item-background"></div>
       <div className="container">
-        <div className={styles.bloc}>
-          <div className={styles.details}>
+        <div className="section-details-item-bloc">
+          <div className="all-details">
             {isLoading ? (
               <Loading secondaryColor="#fff" />
             ) : (
               <>
-                <div className={styles["character"]}>
+                <div>
                   <img
                     src={
                       thumbnail.includes("image_not_available")
@@ -95,7 +95,7 @@ export default function PersonnageDetails({
                         : thumbnail
                     }
                     alt={character.name}
-                    className={styles["image-character"]}
+                    className="item-image"
                   />
                   {!myFavorites[character._id] && (
                     <ButtonsFavorites
@@ -107,8 +107,8 @@ export default function PersonnageDetails({
                   )}
                 </div>
                 <aside>
-                  <div className={styles["details-character"]}>
-                    <div className={styles["details-title"]}>
+                  <div className="details-item">
+                    <div className="details-title">
                       <h1>{character.name}</h1>
                       {/* Si character fait partie des favoris, afficher étoile */}
                       {myFavorites[character._id] && <ButtonStar />}
@@ -119,7 +119,7 @@ export default function PersonnageDetails({
                         : "No information"}
                     </p>
                   </div>
-                  <div className={styles["list-comics"]}>
+                  <div className="list-comics">
                     <h2>{list.length > 0 && "Comics"}</h2>
                     <ul>{list}</ul>
                   </div>
