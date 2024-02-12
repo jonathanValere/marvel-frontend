@@ -51,14 +51,16 @@
     align-items: normal;
     font-weight: 300;
     font-size: 1rem;
-    margin-top: 2.8rem;
+    margin-top: 4.2rem;
   }
 
   .signup {
     padding: 0.7rem;
     border: 1px solid var(--fourth-color);
     border-radius: var(--border-radius);
-    color: var(--fourth-color);
+    color: var(--third-color);
+    background-color: var(--fourth-color);
+    text-align: center;
   }
 
   .navigation a:hover:not(:last-child) {
