@@ -23,7 +23,7 @@ export default function HomePage({ urlBack }) {
       console.log(error.message);
     }
   };
-  //   console.log(characters);
+
   return !isLoading ? (
     <p>En chargement...</p>
   ) : (

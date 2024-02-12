@@ -74,6 +74,7 @@
 
 .card div:nth-child(1) {
   display: flex;
+  gap: 1rem;
 }
 
 .card p {
@@ -156,5 +157,28 @@
 
   .card div:nth-child(1) {
     gap: 0.3rem;
+  }
+
+  .card:hover p {
+    display: initial;
+  }
+
+  .view-all:hover {
+    background-color: initial;
+    color: initial;
+  }
+
+  .card:hover {
+    box-shadow: initial;
+    transition: initial;
+    transform: initial;
+    z-index: initial;
+    background-color: initial;
+    top: initial;
+    min-width: initial;
+  }
+
+  .card:hover a {
+    color: initial;
   }
 }
