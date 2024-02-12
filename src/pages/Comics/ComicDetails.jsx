@@ -65,7 +65,10 @@ export default function ComicDetails({ urlBack, myFavorites, setMyFavorites }) {
                     <div className="details-title">
                       <h1>{comic.title}</h1>
                       {myFavorites[comic._id] && (
-                        <ButtonStar setMyFavorites={setMyFavorites} />
+                        <ButtonStar
+                          setMyFavorites={setMyFavorites}
+                          id={comicId}
+                        />
                       )}
                     </div>
                     <p>{comic.description}</p>

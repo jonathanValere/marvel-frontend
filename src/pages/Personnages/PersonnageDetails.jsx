@@ -111,7 +111,12 @@ export default function PersonnageDetails({
                     <div className="details-title">
                       <h1>{character.name}</h1>
                       {/* Si character fait partie des favoris, afficher étoile */}
-                      {myFavorites[character._id] && <ButtonStar />}
+                      {myFavorites[character._id] && (
+                        <ButtonStar
+                          setMyFavorites={setMyFavorites}
+                          id={characterId}
+                        />
+                      )}
                     </div>
                     <p>
                       {character.description
