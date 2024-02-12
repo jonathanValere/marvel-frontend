@@ -25,9 +25,11 @@
   color: var(--third-color);
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .item-favorite img:hover {
-    pointer-events: none;
+    box-shadow: initial;
+    transition: initial;
+    transform: initial;
   }
 }
 

@@ -136,7 +136,12 @@ button {
 
 @media (max-width: 768px) {
   .list-items li:hover {
-    pointer-events: none;
+    box-shadow: initial;
+    padding: initial;
+    transition: initial;
+    transform: initial;
+    z-index: initial;
+    background-color: initial;
   }
 }
 
@@ -283,9 +288,11 @@ button {
   margin-bottom: -5rem;
 }
 
-@media (max-width: 760px) {
-  .list-comics li:hover {
-    pointer-events: none;
+@media (max-width: 768px) {
+  ƒ .list-comics li:hover {
+    box-shadow: initial;
+    transform: initial;
+    margin-bottom: initial;
   }
 }
 
