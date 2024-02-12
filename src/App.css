@@ -289,7 +289,7 @@ button {
 }
 
 @media (max-width: 768px) {
-  ƒ .list-comics li:hover {
+  .list-comics li:hover img {
     box-shadow: initial;
     transform: initial;
     margin-bottom: initial;
