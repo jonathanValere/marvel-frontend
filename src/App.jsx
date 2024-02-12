@@ -23,6 +23,7 @@ library.add(
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 // Import components
 import Header from "./components/Header/Header";
@@ -38,8 +39,8 @@ import ComicDetails from "./pages/Comics/ComicDetails";
 import NotFountPage from "./pages/NotFound/NotFoundPage";
 
 function App() {
-  // const urlBack = "https://site--marvel-backend--lkcrzmx4xyh5.code.run"; // Backend prod
-  const urlBack = "http://localhost:3000"; // Backend dev
+  const urlBack = "https://site--marvel-backend--lkcrzmx4xyh5.code.run"; // Backend prod
+  // const urlBack = "http://localhost:3000"; // Backend dev
   const [myFavorites, setMyFavorites] = useState(Cookies.get() || null);
 
   return (
