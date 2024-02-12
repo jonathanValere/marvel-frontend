@@ -9,6 +9,7 @@ export default function Footer() {
       <a
         href="https://github.com/jonathanValere"
         title="Lien vers mon compte Github"
+        target="_blank"
       >
         Jonathan Valere
       </a>
