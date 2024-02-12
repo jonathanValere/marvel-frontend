@@ -9,6 +9,7 @@ import {
   faChevronUp,
   faStar,
   faBars,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
   faHeart,
@@ -16,7 +17,8 @@ library.add(
   faChevronLeft,
   faChevronUp,
   faStar,
-  faBars
+  faBars,
+  faXmark
 );
 
 //Import packages

@@ -16,7 +16,11 @@ export default function Navigation() {
   return (
     <>
       <div className={styles["icon-menu"]}>
-        <FontAwesomeIcon icon="bars" onClick={handleDisplayMenu} />
+        {!displayMenu ? (
+          <FontAwesomeIcon icon="bars" onClick={handleDisplayMenu} />
+        ) : (
+          <FontAwesomeIcon icon="xmark" onClick={handleDisplayMenu} />
+        )}
       </div>
       <nav
         className={`${styles.navigation} ${
