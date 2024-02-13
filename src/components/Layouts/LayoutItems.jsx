@@ -5,7 +5,7 @@ import Pagination from "../Pagination/Pagination";
 import SearchBar from "../Searchbar/Searchbar";
 import ButtonScroll from "../Buttons/ButtonScroll";
 
-export default function LayoutItems({ ...props }) {
+export default function LayoutItems(props) {
   return (
     <>
       <ButtonScroll />
@@ -15,6 +15,7 @@ export default function LayoutItems({ ...props }) {
           setSearch={props.setSearch}
           search={props.search}
           setSearchParams={props.setSearchParams}
+          setCurrentPage={props.setCurrentPage}
         />
         <Pagination
           countTotal={props.countTotal}

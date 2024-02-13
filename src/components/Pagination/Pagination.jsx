@@ -32,23 +32,25 @@ export default function Pagination({
   // ----
 
   return (
-    <div className={styles.pagination}>
-      <button
-        onClick={() => handleClickPage("previous")}
-        disabled={currentPage === 1}
-      >
-        <FontAwesomeIcon icon="chevron-left" />
-      </button>
-      <span className={styles.counter}>
-        {currentPage < 10 ? `0${currentPage}` : currentPage}
-        <span>/{maxPage}</span>
-      </span>
-      <button
-        onClick={() => handleClickPage("next")}
-        disabled={currentPage === maxPage}
-      >
-        <FontAwesomeIcon icon="chevron-right" />
-      </button>
-    </div>
+    countTotal !== 0 && (
+      <div className={styles.pagination}>
+        <button
+          onClick={() => handleClickPage("previous")}
+          disabled={currentPage === 1}
+        >
+          <FontAwesomeIcon icon="chevron-left" />
+        </button>
+        <span className={styles.counter}>
+          {currentPage < 10 ? `0${currentPage}` : currentPage}
+          <span>/{maxPage === 1 ? `0${maxPage}` : maxPage}</span>
+        </span>
+        <button
+          onClick={() => handleClickPage("next")}
+          disabled={currentPage === maxPage}
+        >
+          <FontAwesomeIcon icon="chevron-right" />
+        </button>
+      </div>
+    )
   );
 }

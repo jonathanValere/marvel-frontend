@@ -36,7 +36,6 @@
     flex-direction: column;
     align-items: start;
     gap: 1rem;
-    margin-bottom: 1rem;
   }
 
   .bloc-search-pagination div:first-child {
