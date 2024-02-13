@@ -52,13 +52,13 @@ button {
 }
 
 .container {
-  width: 95%;
+  width: 80%;
   margin: 0 auto;
 }
 
 @media (max-width: 1124px) {
   .container {
-    width: 95%;
+    width: 90%;
   }
 }
 
@@ -138,14 +138,18 @@ button {
 
 .section-details-item {
   background-color: var(--primary-color);
-  padding: 10rem 0 2rem 0;
+  padding: 15rem 0 2rem 0;
   position: relative;
   min-height: 100vh;
 }
 
 .section-details-item-background {
   height: 45vh;
-  background-color: var(--third-color);
+  /* background-color: var(--third-color); */
+  background-image: url("./assets/img/background-marvel.jpg");
+  filter: grayscale(100%);
+  background-position: left;
+  background-size: cover;
   position: absolute;
   width: 100%;
   top: 0;

@@ -64,13 +64,13 @@
   }
 
   .information {
-    font-size: 2.3rem;
+    font-size: 2.5rem;
     left: 0vw;
     border-left: none;
   }
 
   .information p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 400;
   }
 }
