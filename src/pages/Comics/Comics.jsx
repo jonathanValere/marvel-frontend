@@ -58,6 +58,7 @@ export default function Comics({ urlBack, myFavorites, setMyFavorites }) {
               setSkip={setSkip}
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
+              searchParams={searchParams}
             >
               <ul className="list-items">
                 {dataComics.results

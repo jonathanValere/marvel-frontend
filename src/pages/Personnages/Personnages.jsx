@@ -55,6 +55,7 @@ export default function Personnages({ urlBack, myFavorites, setMyFavorites }) {
               setSkip={setSkip}
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
+              searchParams={searchParams}
             >
               <ul className="list-items">
                 {characters.results

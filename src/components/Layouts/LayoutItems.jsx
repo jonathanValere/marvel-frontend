@@ -6,6 +6,10 @@ import SearchBar from "../Searchbar/Searchbar";
 import ButtonScroll from "../Buttons/ButtonScroll";
 
 export default function LayoutItems(props) {
+  const getName = props.searchParams.get("name");
+  const getTitle = props.searchParams.get("title");
+  console.log("searchParams >>>", getName);
+  // console.log("searchParams >>>", props.searchParams.get("name"));
   return (
     <>
       <ButtonScroll />
@@ -28,8 +32,14 @@ export default function LayoutItems(props) {
         />
       </div>
       <p className={styles.paragraph}>
-        <span>{props.countTotal} </span>
-        {props.title} found
+        {props.countTotal === 0 ? (
+          `No matches for "${getName || getTitle}"`
+        ) : (
+          <>
+            <span>{props.countTotal} </span>
+            {props.title} found
+          </>
+        )}
       </p>
       {props.children}
     </>
