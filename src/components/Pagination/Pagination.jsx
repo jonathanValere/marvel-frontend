@@ -42,7 +42,7 @@ export default function Pagination({
         </button>
         <span className={styles.counter}>
           {currentPage < 10 ? `0${currentPage}` : currentPage}
-          <span>/{maxPage === 1 ? `0${maxPage}` : maxPage}</span>
+          <span>/{maxPage < 10 ? `0${maxPage}` : maxPage}</span>
         </span>
         <button
           onClick={() => handleClickPage("next")}

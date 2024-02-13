@@ -16,6 +16,7 @@ export default function LayoutItems(props) {
           search={props.search}
           setSearchParams={props.setSearchParams}
           setCurrentPage={props.setCurrentPage}
+          currentPage={props.currentPage}
         />
         <Pagination
           countTotal={props.countTotal}

@@ -6,6 +6,7 @@ export default function SearchBar({
   setSearch,
   setSearchParams,
   setCurrentPage,
+  currentPage,
 }) {
   // Gestion de la recherche ----
   const handleSearch = (event) => {
@@ -16,7 +17,8 @@ export default function SearchBar({
     if (value.length !== 0) {
       if (item === "comics") {
         // Comics
-        setSearchParams({ title: value });
+        setSearchParams({ title: value, page: currentPage });
+        console.log(searchParams);
       } else {
         // Character
         setSearchParams({ name: value });
