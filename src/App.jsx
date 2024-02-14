@@ -43,8 +43,8 @@ import SignUp from "./pages/SignUp/SignUp";
 import Login from "./pages/Login/Login";
 
 function App() {
-  // const urlBack = "https://site--marvel-backend--lkcrzmx4xyh5.code.run"; // Backend prod
-  const urlBack = "http://localhost:3000"; // Backend dev
+  const urlBack = "https://site--marvel-backend--lkcrzmx4xyh5.code.run"; // Backend prod
+  // const urlBack = "http://localhost:3000"; // Backend dev
   const [myFavorites, setMyFavorites] = useState(Cookies.get() || null);
   const [token, setToken] = useState(Cookies.get("token") || null);
 
