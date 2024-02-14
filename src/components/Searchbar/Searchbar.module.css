@@ -4,8 +4,8 @@
   border: none;
   padding: 0.8rem 1.5rem;
   outline: none;
-  background-color: var(--primary-color);
-  color: var(--third-color);
+  background-color: rgb(237, 237, 237);
+  color: var(--primary-color);
   border-radius: var(--border-radius);
   margin: 1rem 0;
 }

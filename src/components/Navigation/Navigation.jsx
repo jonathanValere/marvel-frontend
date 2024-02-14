@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
-export default function Navigation() {
+export default function Navigation({ token }) {
   const [displayMenu, setdisplayMenu] = useState(false);
 
   const handleDisplayMenu = () => {
@@ -30,9 +30,13 @@ export default function Navigation() {
         <Link to="/characters">Characters</Link>
         <Link to="/comics">Comics</Link>
         <Link to="/favoris">Favorites</Link>
-        <Link to="/signup" className={styles.signup}>
-          SignUp
-        </Link>
+        {token ? (
+          <Link to="/user">My account</Link>
+        ) : (
+          <Link to="/signup" className={styles.signup}>
+            SignUp
+          </Link>
+        )}
       </nav>
     </>
   );

@@ -8,8 +8,6 @@ import ButtonScroll from "../Buttons/ButtonScroll";
 export default function LayoutItems(props) {
   const getName = props.searchParams.get("name");
   const getTitle = props.searchParams.get("title");
-  console.log("searchParams >>>", getName);
-  // console.log("searchParams >>>", props.searchParams.get("name"));
   return (
     <>
       <ButtonScroll />

@@ -1,0 +1,90 @@
+:root {
+  --padding-top: 12rem;
+}
+
+.section-signup-page {
+  color: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+}
+
+.bloc-image {
+  background-image: url("../../assets/img/kakemono-sign.jpg");
+  background-size: cover;
+  background-color: red;
+  background-position: top;
+  padding-top: var(--padding-top);
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.bloc-image > div {
+  width: 75%;
+}
+
+.bloc-form {
+  padding-top: var(--padding-top);
+  width: 60%;
+}
+
+.title-and-form h1 {
+  font-size: 2.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.title-and-form p {
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.title-and-form {
+  width: 45%;
+  margin: 0 auto;
+}
+
+.title-and-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.title-and-form input,
+.title-and-form button {
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  outline: none;
+  background-color: rgb(237, 237, 237);
+  border-radius: var(--border-radius);
+}
+
+.title-and-form input::placeholder {
+  font-size: 1rem;
+  color: rgb(174, 174, 174);
+  font-weight: 300;
+}
+
+.title-and-form button {
+  font-size: 1.1rem;
+  font-weight: 500;
+  background-color: var(--fourth-color);
+  color: var(--third-color);
+}
+
+@media (max-width: 640px) {
+  .bloc-image {
+    display: none;
+  }
+  .bloc-form {
+    padding-top: 8rem;
+    width: 100%;
+  }
+  .title-and-form {
+    width: 90%;
+  }
+}

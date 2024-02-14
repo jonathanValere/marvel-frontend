@@ -39,16 +39,27 @@ import Comics from "./pages/Comics/Comics";
 import Favoris from "./pages/Favoris/Favoris";
 import ComicDetails from "./pages/Comics/ComicDetails";
 import NotFountPage from "./pages/NotFound/NotFoundPage";
-import BuildingPage from "./pages/BuildingPage/BuildingPage";
+import SignUp from "./pages/SignUp/SIgnUp";
 
 function App() {
-  const urlBack = "https://site--marvel-backend--lkcrzmx4xyh5.code.run"; // Backend prod
-  // const urlBack = "http://localhost:3000"; // Backend dev
+  // const urlBack = "https://site--marvel-backend--lkcrzmx4xyh5.code.run"; // Backend prod
+  const urlBack = "http://localhost:3000"; // Backend dev
   const [myFavorites, setMyFavorites] = useState(Cookies.get() || null);
+  const [token, setToken] = useState(Cookies.get("token") || null);
+
+  const setUser = (token) => {
+    if (token) {
+      setToken(token);
+      Cookies.set("token", token);
+    } else {
+      setToken(null);
+      Cookies.remove("token");
+    }
+  };
 
   return (
     <Router>
-      <Header />
+      <Header token={token} />
       <main>
         <Routes>
           <Route path="/" element={<HomePage urlBack={urlBack} />} />
@@ -93,7 +104,10 @@ function App() {
             }
           />
           <Route path="/favoris" element={<Favoris urlBack={urlBack} />} />
-          <Route path="/signup" element={<BuildingPage urlBack={urlBack} />} />
+          <Route
+            path="/signup"
+            element={<SignUp urlBack={urlBack} setUser={setUser} />}
+          />
           <Route path="*" element={<NotFountPage />} />
         </Routes>
       </main>
