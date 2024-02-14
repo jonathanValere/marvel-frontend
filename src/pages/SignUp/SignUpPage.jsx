@@ -9,7 +9,7 @@ import axios from "axios";
 // Layout
 import LayoutConnexion from "../../components/Layouts/LayoutConnexion";
 
-export default function SignUp({ setUser, urlBack }) {
+export default function SignUpPage({ setUser, urlBack }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
