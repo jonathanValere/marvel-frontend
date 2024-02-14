@@ -1,25 +1,19 @@
 // Import CSS
-import styles from "./SignUp.module.css";
+import styles from "./Login.module.css";
 
 // Import packages
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-// Layout
+//
 import LayoutConnexion from "../../components/Layouts/LayoutConnexion";
 
-export default function SignUp({ setUser, urlBack }) {
-  const [username, setUsername] = useState("");
+export default function Login({ setUser, urlBack }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null); // permet d'afficher l'erreur (ex: mot de passe oublié)
   const navigate = useNavigate();
-
-  const handleChangeUsername = (event) => {
-    setError(null);
-    return setUsername(event.target.value);
-  };
 
   const handleChangeEmail = (event) => {
     setError(null);
@@ -33,8 +27,7 @@ export default function SignUp({ setUser, urlBack }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(`${urlBack}/user/signup`, {
-        username: username,
+      const response = await axios.post(`${urlBack}/user/login`, {
         email: email,
         password: password,
       });
@@ -55,18 +48,10 @@ export default function SignUp({ setUser, urlBack }) {
     <LayoutConnexion>
       <div className={styles["title-and-form"]}>
         <div>
-          <h1>Sign up</h1>
-          <p>Devenez membre des super-héros!</p>
+          <h1>Login</h1>
         </div>
         {error && <p className={styles.error}>{error}</p>}
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            id="username"
-            placeholder="username"
-            value={username}
-            onChange={handleChangeUsername}
-          />
           <input
             type="email"
             id="email"
@@ -83,6 +68,10 @@ export default function SignUp({ setUser, urlBack }) {
           />
           <button>Submit</button>
         </form>
+
+        <p className={styles["not-account"]}>
+          <Link to="/signup">You don't have an account yet ?</Link>
+        </p>
       </div>
     </LayoutConnexion>
   );

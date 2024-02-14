@@ -1,0 +1,40 @@
+:root {
+  --padding-top: 12rem;
+}
+
+.section-signup-page {
+  color: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+}
+
+.bloc-image {
+  background-image: url("../../assets/img/kakemono-sign.jpg");
+  background-size: cover;
+  background-color: red;
+  background-position: top;
+  padding-top: var(--padding-top);
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.bloc-image > div {
+  width: 75%;
+}
+
+.bloc-form {
+  padding-top: var(--padding-top);
+  width: 60%;
+}
+
+@media (max-width: 640px) {
+  .bloc-image {
+    display: none;
+  }
+  .bloc-form {
+    padding-top: 8rem;
+    width: 100%;
+  }
+}

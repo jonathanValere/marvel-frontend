@@ -57,6 +57,17 @@
   color: var(--third-color);
 }
 
+.title-and-form .not-account {
+  margin-top: 0.7rem;
+}
+
+.title-and-form .not-account a {
+  color: var(--secondary-color);
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-decoration: underline;
+}
+
 @media (max-width: 640px) {
   .bloc-image {
     display: none;

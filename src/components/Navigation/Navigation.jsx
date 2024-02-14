@@ -2,15 +2,21 @@
 import styles from "./Navigation.module.css";
 
 // Import packages
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
-export default function Navigation({ token }) {
+export default function Navigation({ token, setUser }) {
   const [displayMenu, setdisplayMenu] = useState(false);
+  const navigate = useNavigate();
 
   const handleDisplayMenu = () => {
     setdisplayMenu(!displayMenu);
+  };
+
+  const logout = () => {
+    setUser(); // Supprimer le token donc déconnecte l'utilisateur
+    navigate("/");
   };
 
   return (
@@ -29,13 +35,23 @@ export default function Navigation({ token }) {
       >
         <Link to="/characters">Characters</Link>
         <Link to="/comics">Comics</Link>
-        <Link to="/favoris">Favorites</Link>
+
         {token ? (
-          <Link to="/user">My account</Link>
+          <>
+            <Link to="/favoris">Favorites</Link>
+            <Link className={styles.signup} onClick={logout}>
+              Logout
+            </Link>
+          </>
         ) : (
-          <Link to="/signup" className={styles.signup}>
-            SignUp
-          </Link>
+          <>
+            <Link to="/login" className={styles.signup}>
+              Login
+            </Link>
+            <Link to="/signup" className={styles.signup}>
+              SignUp
+            </Link>
+          </>
         )}
       </nav>
     </>

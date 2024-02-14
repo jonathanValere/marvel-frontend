@@ -39,7 +39,8 @@ import Comics from "./pages/Comics/Comics";
 import Favoris from "./pages/Favoris/Favoris";
 import ComicDetails from "./pages/Comics/ComicDetails";
 import NotFountPage from "./pages/NotFound/NotFoundPage";
-import SignUp from "./pages/SignUp/SIgnUp";
+import SignUp from "./pages/SignUp/SignUp";
+import Login from "./pages/Login/Login";
 
 function App() {
   // const urlBack = "https://site--marvel-backend--lkcrzmx4xyh5.code.run"; // Backend prod
@@ -59,7 +60,7 @@ function App() {
 
   return (
     <Router>
-      <Header token={token} />
+      <Header token={token} setUser={setUser} />
       <main>
         <Routes>
           <Route path="/" element={<HomePage urlBack={urlBack} />} />
@@ -107,6 +108,10 @@ function App() {
           <Route
             path="/signup"
             element={<SignUp urlBack={urlBack} setUser={setUser} />}
+          />
+          <Route
+            path="/login"
+            element={<Login urlBack={urlBack} setUser={setUser} />}
           />
           <Route path="*" element={<NotFountPage />} />
         </Routes>
