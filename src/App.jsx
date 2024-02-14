@@ -39,8 +39,8 @@ import Comics from "./pages/Comics/Comics";
 import Favoris from "./pages/Favoris/Favoris";
 import ComicDetails from "./pages/Comics/ComicDetails";
 import NotFountPage from "./pages/NotFound/NotFoundPage";
-import SignUp from "./pages/SignUp/SignUp";
 import Login from "./pages/Login/Login";
+import SignUp from "./pages/SignUp/SignUp";
 
 function App() {
   const urlBack = "https://site--marvel-backend--lkcrzmx4xyh5.code.run"; // Backend prod
