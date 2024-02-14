@@ -16,6 +16,7 @@ export default function PersonnageDetails({
   urlBack,
   myFavorites,
   setMyFavorites,
+  token,
 }) {
   const { characterId } = useParams();
   const [isLoading, setIsLoading] = useState(true);
@@ -103,6 +104,7 @@ export default function PersonnageDetails({
                       character={character}
                       myFavorites={myFavorites}
                       setMyFavorites={setMyFavorites}
+                      token={token}
                     />
                   )}
                 </div>

@@ -78,6 +78,7 @@ function App() {
             path="/character/:characterId"
             element={
               <PersonnageDetails
+                token={token}
                 urlBack={urlBack}
                 myFavorites={myFavorites}
                 setMyFavorites={setMyFavorites}

@@ -15,7 +15,7 @@ export default function Navigation({ token, setUser }) {
   };
 
   const logout = () => {
-    setUser(); // Supprimer le token donc déconnecte l'utilisateur
+    setUser(null); // Supprimer le token donc déconnecte l'utilisateur
     navigate("/");
   };
 
