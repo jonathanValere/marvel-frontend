@@ -1,28 +1,22 @@
-// Import CSS
-import styles from "./PersonnageDetails.module.css";
-
 // Import packages
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 // Import components --
 import Card from "../../components/Card/Card";
-import ButtonsFavorites from "../../components/Buttons/ButtonsFavorites";
 import Loading from "../../components/Loading/Loading";
 import ButtonStar from "../../components/Buttons/ButtonStar";
 
-export default function PersonnageDetails({
-  urlBack,
-  myFavorites,
-  setMyFavorites,
-  token,
-}) {
+export default function PersonnageDetails({ urlBack, token }) {
   const { characterId } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [character, setCharacter] = useState(); // Données sur le super-héros
   const [listComicsOfCharacter, setListComicsOfCharacter] = useState([]); // Liste des comics
   const [thumbnail, setThumbnail] = useState(""); // Récupérer l'image du super héros
+  const [favoritesUser, setFavoritesUser] = useState([]);
+  const [toggle, setToggle] = useState(false); // Permet de remonter le composant après ajout ou suppression des favoris
+  const navigate = useNavigate();
 
   // Gestion image par default ---
   const imageDefault =
@@ -31,7 +25,8 @@ export default function PersonnageDetails({
 
   useEffect(() => {
     getCharacter();
-  }, []);
+    getFavoritesUser();
+  }, [toggle]);
 
   useEffect(() => {
     isLoading && getDataComics();
@@ -62,6 +57,50 @@ export default function PersonnageDetails({
     }
   };
 
+  const getFavoritesUser = async () => {
+    if (token) {
+      try {
+        const response = await axios.get(`${urlBack}/user/${token}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setFavoritesUser(response.data.favorites.characters);
+      } catch (error) {
+        console.log(error.response);
+      }
+    }
+  };
+
+  //---------
+  const addToFavorites = async () => {
+    if (token) {
+      try {
+        const { data } = await axios.post(
+          `${urlBack}/favoris/characters/add/${characterId}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        if (data.favorites.characters) {
+          setToggle(!toggle);
+          console.log(`${character.name} added to favorites`);
+        } else {
+          console.log("Something wrong!");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      navigate("/login");
+    }
+  };
+
+  ////--------------
+
   // Liste des comics ---
   const list = listComicsOfCharacter.map((comic) => (
     <li key={comic._id}>
@@ -75,8 +114,6 @@ export default function PersonnageDetails({
     </li>
   ));
   // ----
-
-  // console.log(myFavorites[character._id]);
 
   return (
     <section className="section-details-item">
@@ -98,14 +135,10 @@ export default function PersonnageDetails({
                     alt={character.name}
                     className="item-image"
                   />
-                  {!myFavorites[character._id] && (
-                    <ButtonsFavorites
-                      item="character"
-                      character={character}
-                      myFavorites={myFavorites}
-                      setMyFavorites={setMyFavorites}
-                      token={token}
-                    />
+                  {!favoritesUser.includes(characterId) && (
+                    <button onClick={addToFavorites}>
+                      Add to my favorites
+                    </button>
                   )}
                 </div>
                 <aside>
@@ -113,10 +146,14 @@ export default function PersonnageDetails({
                     <div className="details-title">
                       <h1>{character.name}</h1>
                       {/* Si character fait partie des favoris, afficher étoile */}
-                      {myFavorites[character._id] && (
+                      {favoritesUser.includes(characterId) && (
                         <ButtonStar
-                          setMyFavorites={setMyFavorites}
                           id={characterId}
+                          token={token}
+                          toggle={toggle}
+                          setToggle={setToggle}
+                          item="characters"
+                          urlBack={urlBack}
                         />
                       )}
                     </div>

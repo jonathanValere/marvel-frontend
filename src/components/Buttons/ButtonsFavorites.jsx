@@ -1,6 +1,7 @@
 // Import packages --
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 // Import CSS
 import styles from "./ButtonsFavorites.module.css";
@@ -15,7 +16,7 @@ export default function ButtonsFavorites({
   const navigate = useNavigate();
 
   // Gestion  de l'ajout et de la suppression ---
-  const addToFavorites = (id, nameItem) => {
+  const addToFavorites = async (id, nameItem) => {
     if (token) {
       if (item === "character") {
         Cookies.set(id, `character-${nameItem}`);

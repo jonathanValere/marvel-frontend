@@ -45,7 +45,6 @@ import SignUp from "./pages/SignUp/SignUpPage";
 function App() {
   const urlBack = "https://site--marvel-backend--lkcrzmx4xyh5.code.run"; // Backend prod
   // const urlBack = "http://localhost:3000"; // Backend dev
-  const [myFavorites, setMyFavorites] = useState(Cookies.get() || null);
   const [token, setToken] = useState(Cookies.get("token") || null);
 
   const setUser = (token) => {
@@ -66,44 +65,16 @@ function App() {
           <Route path="/" element={<HomePage urlBack={urlBack} />} />
           <Route
             path="/characters"
-            element={
-              <Personnages
-                urlBack={urlBack}
-                myFavorites={myFavorites}
-                setMyFavorites={setMyFavorites}
-              />
-            }
+            element={<Personnages urlBack={urlBack} />}
           />
           <Route
             path="/character/:characterId"
-            element={
-              <PersonnageDetails
-                token={token}
-                urlBack={urlBack}
-                myFavorites={myFavorites}
-                setMyFavorites={setMyFavorites}
-              />
-            }
+            element={<PersonnageDetails token={token} urlBack={urlBack} />}
           />
-          <Route
-            path="/comics"
-            element={
-              <Comics
-                urlBack={urlBack}
-                myFavorites={myFavorites}
-                setMyFavorites={setMyFavorites}
-              />
-            }
-          />
+          <Route path="/comics" element={<Comics urlBack={urlBack} />} />
           <Route
             path="/comic/:comicId"
-            element={
-              <ComicDetails
-                urlBack={urlBack}
-                myFavorites={myFavorites}
-                setMyFavorites={setMyFavorites}
-              />
-            }
+            element={<ComicDetails urlBack={urlBack} token={token} />}
           />
           <Route path="/favoris" element={<Favoris urlBack={urlBack} />} />
           <Route

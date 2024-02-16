@@ -1,25 +1,26 @@
 // Import packages --
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-
-// Import CSS
-import styles from "./ComicDetails.module.css";
+import { useParams, useNavigate } from "react-router-dom";
 
 // Import components
-import ButtonsFavorites from "../../components/Buttons/ButtonsFavorites";
 import Loading from "../../components/Loading/Loading";
 import ButtonStar from "../../components/Buttons/ButtonStar";
 
-export default function ComicDetails({ urlBack, myFavorites, setMyFavorites }) {
+export default function ComicDetails({ urlBack, setMyFavorites, token }) {
   const { comicId } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [comic, setComic] = useState(); // Données sur le comic
   const [thumbnail, setThumbnail] = useState(""); // Récupérer l'image du super héros
 
+  const [favoritesUser, setFavoritesUser] = useState([]);
+  const [toggle, setToggle] = useState(false); // Permet de remonter le composant après ajout ou suppression des favoris
+  const navigate = useNavigate();
+
   useEffect(() => {
     getComic();
-  }, []);
+    getFavoritesUser();
+  }, [toggle]);
 
   const getComic = async () => {
     try {
@@ -32,6 +33,48 @@ export default function ComicDetails({ urlBack, myFavorites, setMyFavorites }) {
       setIsLoading(false);
     } catch (error) {
       console.log(error.message);
+    }
+  };
+
+  const getFavoritesUser = async () => {
+    if (token) {
+      try {
+        const response = await axios.get(`${urlBack}/user/${token}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setFavoritesUser(response.data.favorites.comics);
+      } catch (error) {
+        console.log(error.response);
+      }
+    }
+  };
+
+  //---------
+  const addToFavorites = async () => {
+    if (token) {
+      try {
+        const { data } = await axios.post(
+          `${urlBack}/favoris/comics/add/${comicId}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        if (data.favorites.comics) {
+          setToggle(!toggle);
+          console.log(`${comic.title} added to favorites`);
+        } else {
+          console.log("Something wrong!");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      navigate("/login");
     }
   };
 
@@ -51,23 +94,25 @@ export default function ComicDetails({ urlBack, myFavorites, setMyFavorites }) {
                     src={thumbnail}
                     alt={comic.title}
                   />
-                  {!myFavorites[comic._id] && (
-                    <ButtonsFavorites
-                      item="comic"
-                      comic={comic}
-                      myFavorites={myFavorites}
-                      setMyFavorites={setMyFavorites}
-                    />
+                  {!favoritesUser.includes(comicId) && (
+                    <button onClick={addToFavorites}>
+                      Add to my favorites
+                    </button>
                   )}
                 </div>
                 <aside>
                   <div className="details-item">
                     <div className="details-title">
                       <h1>{comic.title}</h1>
-                      {myFavorites[comic._id] && (
+                      {favoritesUser.includes(comicId) && (
                         <ButtonStar
                           setMyFavorites={setMyFavorites}
                           id={comicId}
+                          token={token}
+                          toggle={toggle}
+                          setToggle={setToggle}
+                          item="comics"
+                          urlBack={urlBack}
                         />
                       )}
                     </div>
