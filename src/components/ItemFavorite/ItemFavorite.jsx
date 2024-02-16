@@ -1,46 +1,69 @@
 // Import packages
 import Cookies from "js-cookie";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 // Import CSS
 // import styles from "./ItemFavorite.module.css";
 import "./ItemFavorite.css";
+import axios from "axios";
 
-export default function ItemFavorite({ ...props }) {
+export default function ItemFavorite(props) {
   const [isFavorite, setIsFavorite] = useState(true);
-
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState({});
+  const [thumbnail, setThumbnail] = useState(null);
+  // console.log(`${props.urlBack}/${props.item}/${props.data}`);
+  console.log(props);
   // Gestion image par default ---
   const imageDefault =
     "https://res.cloudinary.com/dmgktp9qs/image/upload/v1707599775/Marvel/ezbqe3yghr6laoi4ezte.png";
-  const thumbnail = `${props.data.thumbnail.path}.${props.data.thumbnail.extension}`;
+
   // ---
 
+  // Récupérer l'Item
+  useEffect(() => {
+    const getItem = async () => {
+      const { data } = await axios.get(
+        `${props.urlBack}/${props.item}/${props.data}`
+      );
+      setData(data.data);
+      setThumbnail(
+        `${data.data.thumbnail.path}.${data.data.thumbnail.extension}`
+      );
+      setIsLoading(false);
+    };
+    getItem();
+  }, []);
+
   // Retirer le character des favoris --
-  const removeToFavorites = (id) => {
-    if (props.item === "character") {
-      Cookies.remove(id);
-      props.setCounter((prev) => prev - 1);
+  const removeToFavorites = async () => {
+    try {
+      const { data } = await axios.delete(
+        `${props.urlBack}/favoris/${props.item}s/remove/${props.data}`,
+        {
+          headers: {
+            Authorization: "Bearer " + props.token,
+          },
+        }
+      );
       setIsFavorite(false);
-      return console.log(`Character ${props.data.name} removed to favorites!`);
-    }
-    if (props.item === "comic") {
-      Cookies.remove(id);
       props.setCounter((prev) => prev - 1);
-      setIsFavorite(false);
-      return console.log(`Comic ${props.data.title} removed to favorites!`);
+      console.log(data.message);
+    } catch (error) {
+      console.log("something wrong!");
     }
   };
 
-  return (
+  return !isLoading ? (
     isFavorite && (
       <li className="item-favorite">
         <>
           <Link
             to={
               props.item === "character"
-                ? `/character/${props.data._id}`
-                : `/comic/${props.data._id}`
+                ? `/character/${data._id}`
+                : `/comic/${data._id}`
             }
           >
             <img
@@ -53,11 +76,13 @@ export default function ItemFavorite({ ...props }) {
               height={252}
             />
           </Link>
-          <button onClick={() => removeToFavorites(props.data._id)}>
+          <button onClick={() => removeToFavorites(data._id)}>
             Remove to favorites
           </button>
         </>
       </li>
     )
+  ) : (
+    <></>
   );
 }

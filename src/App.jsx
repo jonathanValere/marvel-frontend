@@ -76,7 +76,10 @@ function App() {
             path="/comic/:comicId"
             element={<ComicDetails urlBack={urlBack} token={token} />}
           />
-          <Route path="/favoris" element={<Favoris urlBack={urlBack} />} />
+          <Route
+            path="/favoris"
+            element={<Favoris urlBack={urlBack} token={token} />}
+          />
           <Route
             path="/signup"
             element={<SignUp urlBack={urlBack} setUser={setUser} />}

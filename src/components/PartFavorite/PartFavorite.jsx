@@ -7,7 +7,7 @@ import styles from "./PartFavorite.module.css";
 // Import components
 import ItemFavorite from "../ItemFavorite/ItemFavorite";
 
-export default function PartFavorite({ ...props }) {
+export default function PartFavorite(props) {
   const [counter, setCounter] = useState(props.datas.length);
   return (
     <div className={styles["part-favorite"]}>
@@ -20,10 +20,12 @@ export default function PartFavorite({ ...props }) {
         {props.datas.map((data) => (
           // Item représente soit un character soit un comic
           <ItemFavorite
-            key={data._id}
+            key={data}
             item={props.item} // "character" ou "comic"
-            data={data} // données d'un character ou comic
+            data={data} // id d'un character ou comic
             setCounter={setCounter}
+            urlBack={props.urlBack}
+            token={props.token}
           />
         ))}
       </ul>

@@ -1,7 +1,6 @@
 // Import packages --
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
 
 // Import CSS
 import styles from "./Favoris.module.css";
@@ -10,11 +9,10 @@ import styles from "./Favoris.module.css";
 import PartFavorite from "../../components/PartFavorite/PartFavorite";
 import Loading from "../../components/Loading/Loading";
 
-export default function Favoris({ urlBack }) {
+export default function Favoris({ urlBack, token }) {
   // const [favoris, setFavoris] = useState(Cookies.get() || null); // Liste des favoris
-  // Pourquoi mettre dans un state ????!!! Ca fonction dans une variable classique
+  // Pourquoi mettre dans un state ????!!! Ca fonctionne dans une variable classique
 
-  const favoris = Cookies.get() || null; // Liste des favoris
   const [dataCharacters, setDataCharacters] = useState([]); // Array qui contiendra uniquement toutes les données des characters
   const [dataComics, setDataComics] = useState([]); // Array qui contiendra uniquement toutes les données des comics
   const [isLoading, setIsLoading] = useState(true);
@@ -24,24 +22,35 @@ export default function Favoris({ urlBack }) {
   }, []);
   // Obtenir tous les favoris --
   const getFavorites = async () => {
-    const dataCharactersCopy = [...dataCharacters];
-    const dataComicsCopy = [...dataComics];
+    // let dataCharactersCopy = [...dataCharacters];
+    // let dataComicsCopy = [...dataComics];
     try {
-      for (let key in favoris) {
-        const item = Cookies.get(key);
-        // console.log(item); // name ou title
-        if (item.includes("character")) {
-          const { data } = await axios.get(`${urlBack}/character/${key}`);
-          dataCharactersCopy.push(data.data);
-          setDataCharacters(dataCharactersCopy);
-        }
+      const { data } = await axios.get(`${urlBack}/favoris`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      setDataCharacters(data.favorites.characters);
+      setDataComics(data.favorites.comics);
 
-        if (item.includes("comic")) {
-          const { data } = await axios.get(`${urlBack}/comic/${key}`);
-          dataComicsCopy.push(data.data);
-          setDataComics(dataComicsCopy);
-        }
-      }
+      // dataCharactersCopy = data.favorites.characters;
+      // dataComicsCopy = data.favorites.comics;
+
+      // for (let key in favoris) {
+      //   const item = Cookies.get(key);
+      //   // console.log(item); // name ou title
+      //   if (item.includes("character")) {
+      //     const { data } = await axios.get(`${urlBack}/character/${key}`);
+      //     dataCharactersCopy.push(data.data);
+      //     setDataCharacters(dataCharactersCopy);
+      //   }
+
+      //   if (item.includes("comic")) {
+      //     const { data } = await axios.get(`${urlBack}/comic/${key}`);
+      //     dataComicsCopy.push(data.data);
+      //     setDataComics(dataComicsCopy);
+      //   }
+      // }
       setIsLoading(false);
     } catch (error) {
       console.log(error.message);
@@ -62,8 +71,16 @@ export default function Favoris({ urlBack }) {
                 namePart="Characters"
                 item="character"
                 datas={dataCharacters}
+                urlBack={urlBack}
+                token={token}
               />
-              <PartFavorite namePart="Comics" item="comic" datas={dataComics} />
+              <PartFavorite
+                namePart="Comics"
+                item="comic"
+                datas={dataComics}
+                urlBack={urlBack}
+                token={token}
+              />
             </>
           )}
         </div>
