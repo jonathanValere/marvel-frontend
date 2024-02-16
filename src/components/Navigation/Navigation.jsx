@@ -39,7 +39,7 @@ export default function Navigation({ token, setUser }) {
         {token ? (
           <>
             <Link to="/favoris">Favorites</Link>
-            <Link className={styles.signup} onClick={logout}>
+            <Link to="/" className={styles.signup} onClick={logout}>
               Logout
             </Link>
           </>
