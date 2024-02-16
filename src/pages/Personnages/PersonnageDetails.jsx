@@ -125,7 +125,7 @@ export default function PersonnageDetails({ urlBack, token }) {
               <Loading secondaryColor="#fff" />
             ) : (
               <>
-                <div>
+                <div className="image-and-btnAdd">
                   <img
                     src={
                       thumbnail.includes("image_not_available")
@@ -136,7 +136,10 @@ export default function PersonnageDetails({ urlBack, token }) {
                     className="item-image"
                   />
                   {!favoritesUser.includes(characterId) && (
-                    <button onClick={addToFavorites}>
+                    <button
+                      onClick={addToFavorites}
+                      className="button-add-favorites"
+                    >
                       Add to my favorites
                     </button>
                   )}

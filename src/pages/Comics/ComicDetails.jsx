@@ -17,6 +17,12 @@ export default function ComicDetails({ urlBack, setMyFavorites, token }) {
   const [toggle, setToggle] = useState(false); // Permet de remonter le composant après ajout ou suppression des favoris
   const navigate = useNavigate();
 
+  // Gestion image par default ---
+  const imageDefault =
+    "https://res.cloudinary.com/dmgktp9qs/image/upload/v1707599775/Marvel/ezbqe3yghr6laoi4ezte.png";
+
+  // ---
+
   useEffect(() => {
     getComic();
     getFavoritesUser();
@@ -91,11 +97,18 @@ export default function ComicDetails({ urlBack, setMyFavorites, token }) {
                 <div>
                   <img
                     className="item-image"
-                    src={thumbnail}
+                    src={
+                      thumbnail.includes("image_not_available")
+                        ? imageDefault
+                        : thumbnail
+                    }
                     alt={comic.title}
                   />
                   {!favoritesUser.includes(comicId) && (
-                    <button onClick={addToFavorites}>
+                    <button
+                      onClick={addToFavorites}
+                      className="button-add-favorites"
+                    >
                       Add to my favorites
                     </button>
                   )}

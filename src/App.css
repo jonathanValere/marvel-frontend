@@ -178,8 +178,11 @@ button {
   object-fit: cover;
 }
 
-/* A revoir ---- */
-.item button {
+.image-and-btnAdd {
+  width: 24rem;
+}
+
+.button-add-favorites {
   background-color: var(--third-color);
   width: 14rem;
   border: none;
@@ -333,6 +336,10 @@ button {
   .item-image {
     width: 100%;
     height: 15rem;
+  }
+
+  .image-and-btnAdd {
+    width: 100%;
   }
 
   .details-item h1 {

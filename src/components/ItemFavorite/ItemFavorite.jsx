@@ -1,5 +1,4 @@
 // Import packages
-import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -13,8 +12,7 @@ export default function ItemFavorite(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({});
   const [thumbnail, setThumbnail] = useState(null);
-  // console.log(`${props.urlBack}/${props.item}/${props.data}`);
-  console.log(props);
+
   // Gestion image par default ---
   const imageDefault =
     "https://res.cloudinary.com/dmgktp9qs/image/upload/v1707599775/Marvel/ezbqe3yghr6laoi4ezte.png";
