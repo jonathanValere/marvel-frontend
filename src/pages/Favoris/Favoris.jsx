@@ -33,24 +33,6 @@ export default function Favoris({ urlBack, token }) {
       setDataCharacters(data.favorites.characters);
       setDataComics(data.favorites.comics);
 
-      // dataCharactersCopy = data.favorites.characters;
-      // dataComicsCopy = data.favorites.comics;
-
-      // for (let key in favoris) {
-      //   const item = Cookies.get(key);
-      //   // console.log(item); // name ou title
-      //   if (item.includes("character")) {
-      //     const { data } = await axios.get(`${urlBack}/character/${key}`);
-      //     dataCharactersCopy.push(data.data);
-      //     setDataCharacters(dataCharactersCopy);
-      //   }
-
-      //   if (item.includes("comic")) {
-      //     const { data } = await axios.get(`${urlBack}/comic/${key}`);
-      //     dataComicsCopy.push(data.data);
-      //     setDataComics(dataComicsCopy);
-      //   }
-      // }
       setIsLoading(false);
     } catch (error) {
       console.log(error.message);

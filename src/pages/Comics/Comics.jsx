@@ -11,7 +11,7 @@ import Comic from "../../components/Comic/Comic";
 import LayoutItems from "../../components/Layouts/LayoutItems";
 import Loading from "../../components/Loading/Loading";
 
-export default function Comics({ urlBack, myFavorites, setMyFavorites }) {
+export default function Comics({ urlBack, token }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(true);
   const [dataComics, setDataComics] = useState({});
@@ -20,10 +20,14 @@ export default function Comics({ urlBack, myFavorites, setMyFavorites }) {
   const [currentPage, setCurrentPage] = useState(searchParams.get("skip") || 1);
   const [skip, setSkip] = useState(searchParams.get("skip") || 0);
   const [countTotal, setCountTotal] = useState(0); // Total de Comics, sert à calculer le nombre de page
+  const [favoritesComics, setFavoritesComics] = useState({});
 
   // Récupération des données sur les comics --
   useEffect(() => {
     getDataComics();
+    if (token) {
+      checkIsFavoris();
+    }
   }, [currentPage, search]);
 
   // Récupérer tous les comics
@@ -37,6 +41,17 @@ export default function Comics({ urlBack, myFavorites, setMyFavorites }) {
       setIsLoading(false);
     } catch (error) {
       console.log(error.message);
+    }
+  };
+
+  const checkIsFavoris = async () => {
+    try {
+      const { data } = await axios.get(`${urlBack}/favoris`, {
+        headers: { authorization: "Bearer " + token },
+      });
+      setFavoritesComics(data.favorites.comics);
+    } catch (error) {
+      console.log(error);
     }
   };
   // -----
@@ -68,8 +83,8 @@ export default function Comics({ urlBack, myFavorites, setMyFavorites }) {
                     <Comic
                       key={comic._id}
                       comic={comic}
-                      setMyFavorites={setMyFavorites}
-                      myFavorites={myFavorites}
+                      token={token}
+                      favorites={favoritesComics}
                     />
                   ))}
               </ul>

@@ -11,7 +11,7 @@ import Character from "../../components/Character/Character";
 import LayoutItems from "../../components/Layouts/LayoutItems";
 import Loading from "../../components/Loading/Loading";
 
-export default function Personnages({ urlBack, myFavorites, setMyFavorites }) {
+export default function Personnages({ urlBack, token }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [characters, setCharacters] = useState([]); // List of characters
   const [isLoading, setIsLoading] = useState(true);
@@ -19,9 +19,13 @@ export default function Personnages({ urlBack, myFavorites, setMyFavorites }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [skip, setSkip] = useState(searchParams.get("skip") || 0);
   const [countTotal, setCountTotal] = useState(1); // Total de Personnages, sert à calculer le nombre de page
+  const [favoritesCharacters, setFavoritesCharacters] = useState({});
 
   useEffect(() => {
     getAllCharacters();
+    if (token) {
+      checkIsFavoris();
+    }
   }, [currentPage, search]);
 
   const getAllCharacters = async () => {
@@ -35,6 +39,17 @@ export default function Personnages({ urlBack, myFavorites, setMyFavorites }) {
     } catch (error) {
       console.log(error);
       console.log(error.message);
+    }
+  };
+
+  const checkIsFavoris = async () => {
+    try {
+      const { data } = await axios.get(`${urlBack}/favoris`, {
+        headers: { authorization: "Bearer " + token },
+      });
+      setFavoritesCharacters(data.favorites.characters);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -66,8 +81,8 @@ export default function Personnages({ urlBack, myFavorites, setMyFavorites }) {
                     <Character
                       key={character._id}
                       character={character}
-                      myFavorites={myFavorites}
-                      setMyFavorites={setMyFavorites}
+                      token={token}
+                      favorites={favoritesCharacters}
                     />
                   ))}
               </ul>

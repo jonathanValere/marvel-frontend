@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 // Import components
 import Card from "../Card/Card";
 
-export default function Character({ character, myFavorites, setMyFavorites }) {
+export default function Character({ character, favorites, token }) {
   return (
     <li>
       <Link to={`/character/${character._id}`}>
@@ -14,6 +14,8 @@ export default function Character({ character, myFavorites, setMyFavorites }) {
           thumbnail={character.thumbnail}
           name={character.name}
           description={character.description}
+          token={token}
+          favorites={favorites}
         />
       </Link>
     </li>

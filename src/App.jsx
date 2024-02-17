@@ -43,8 +43,8 @@ import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUpPage";
 
 function App() {
-  const urlBack = "https://site--marvel-backend--lkcrzmx4xyh5.code.run"; // Backend prod
-  // const urlBack = "http://localhost:3000"; // Backend dev
+  // const urlBack = "https://site--marvel-backend--lkcrzmx4xyh5.code.run"; // Backend prod
+  const urlBack = "http://localhost:3000"; // Backend dev
   const [token, setToken] = useState(Cookies.get("token") || null);
 
   const setUser = (token) => {
@@ -65,13 +65,16 @@ function App() {
           <Route path="/" element={<HomePage urlBack={urlBack} />} />
           <Route
             path="/characters"
-            element={<Personnages urlBack={urlBack} />}
+            element={<Personnages urlBack={urlBack} token={token} />}
           />
           <Route
             path="/character/:characterId"
             element={<PersonnageDetails token={token} urlBack={urlBack} />}
           />
-          <Route path="/comics" element={<Comics urlBack={urlBack} />} />
+          <Route
+            path="/comics"
+            element={<Comics urlBack={urlBack} token={token} />}
+          />
           <Route
             path="/comic/:comicId"
             element={<ComicDetails urlBack={urlBack} token={token} />}
