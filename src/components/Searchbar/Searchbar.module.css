@@ -21,14 +21,3 @@
 input[type="search"]::-webkit-search-cancel-button {
   cursor: pointer;
 }
-
-@media (max-width: 640px) {
-  .searchbar input {
-    width: 100%;
-    font-size: 1.1rem;
-    border: none;
-    outline: none;
-    color: var(--third-color);
-    border-radius: var(--border-radius);
-  }
-}
