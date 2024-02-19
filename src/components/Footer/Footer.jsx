@@ -7,8 +7,8 @@ export default function Footer() {
     <footer>
       ©{currentDate.getFullYear()} | Marvel |{" "}
       <a
-        href="https://github.com/jonathanValere"
-        title="Lien vers mon compte Github"
+        href="https://www.linkedin.com/in/jonathan-valere/"
+        title="Lien vers mon profil Linkedin"
         target="_blank"
       >
         Jonathan Valere
