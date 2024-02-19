@@ -25,7 +25,6 @@ library.add(
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useState } from "react";
-import { motion } from "framer-motion";
 
 // Import components
 import Header from "./components/Header/Header";

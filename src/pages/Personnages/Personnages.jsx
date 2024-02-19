@@ -19,7 +19,7 @@ export default function Personnages({ urlBack, token }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [skip, setSkip] = useState(searchParams.get("skip") || 0);
   const [countTotal, setCountTotal] = useState(1); // Total de Personnages, sert à calculer le nombre de page
-  const [favoritesCharacters, setFavoritesCharacters] = useState({});
+  const [favoritesCharacters, setFavoritesCharacters] = useState([]);
 
   useEffect(() => {
     getAllCharacters();

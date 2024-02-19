@@ -1,7 +1,10 @@
 import styles from "./Card.module.css";
 
+// Import packages
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
+// Import components
 import ButtonStar from "../Buttons/ButtonStar";
 
 export default function Card({
@@ -14,7 +17,6 @@ export default function Card({
 }) {
   const [isFavorite, setIsFavorite] = useState(false);
   // Pour les comics le name est égale au title
-
   useEffect(() => {
     if (token && favorites.includes(id)) {
       setIsFavorite(true);
@@ -35,7 +37,7 @@ export default function Card({
   }
   // ---
   return (
-    <div className={styles.card}>
+    <motion.div className={styles.card}>
       {isFavorite && <ButtonStar />}
       <div>
         <img
@@ -52,6 +54,6 @@ export default function Card({
           <p>{descriptionCut ? descriptionCut + "..." : "No information"}</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
