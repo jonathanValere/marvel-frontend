@@ -36,8 +36,19 @@ export default function Card({
     }
   }
   // ---
+
+  // Animation ---
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  };
+  //----------
+
   return (
-    <motion.div className={styles.card}>
+    <motion.div variants={item} className={styles.card}>
       {isFavorite && <ButtonStar />}
       <div>
         <img

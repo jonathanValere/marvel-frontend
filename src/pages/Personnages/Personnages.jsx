@@ -5,6 +5,7 @@ import styles from "./Personnages.module.css";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
+import { motion } from "framer-motion";
 
 // Import components --
 import Character from "../../components/Character/Character";
@@ -72,20 +73,18 @@ export default function Personnages({ urlBack, token }) {
               setCurrentPage={setCurrentPage}
               searchParams={searchParams}
             >
-              <ul className="list-items">
-                {characters.results
-                  .filter((character) =>
-                    character.name.toLowerCase().includes(search)
-                  )
-                  .map((character) => (
-                    <Character
-                      key={character._id}
-                      character={character}
-                      token={token}
-                      favorites={favoritesCharacters}
-                    />
-                  ))}
-              </ul>
+              {characters.results
+                .filter((character) =>
+                  character.name.toLowerCase().includes(search)
+                )
+                .map((character) => (
+                  <Character
+                    key={character._id}
+                    character={character}
+                    token={token}
+                    favorites={favoritesCharacters}
+                  />
+                ))}
             </LayoutItems>
           )}
         </div>

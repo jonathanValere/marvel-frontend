@@ -6,6 +6,7 @@ import { useParams, useNavigate } from "react-router-dom";
 // Import components
 import Loading from "../../components/Loading/Loading";
 import ButtonStar from "../../components/Buttons/ButtonStar";
+import Button from "../../components/Buttons/Button";
 
 export default function ComicDetails({ urlBack, setMyFavorites, token }) {
   const { comicId } = useParams();
@@ -15,7 +16,6 @@ export default function ComicDetails({ urlBack, setMyFavorites, token }) {
 
   const [favoritesUser, setFavoritesUser] = useState([]);
   const [toggle, setToggle] = useState(false); // Permet de remonter le composant après ajout ou suppression des favoris
-  const navigate = useNavigate();
 
   // Gestion image par default ---
   const imageDefault =
@@ -57,33 +57,6 @@ export default function ComicDetails({ urlBack, setMyFavorites, token }) {
     }
   };
 
-  //---------
-  const addToFavorites = async () => {
-    if (token) {
-      try {
-        const { data } = await axios.post(
-          `${urlBack}/favoris/comics/add/${comicId}`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        if (data.favorites.comics) {
-          setToggle(!toggle);
-          console.log(`${comic.title} added to favorites`);
-        } else {
-          console.log("Something wrong!");
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      navigate("/login");
-    }
-  };
-
   return (
     <section className="section-details-item">
       <div className="section-details-item-background"></div>
@@ -105,12 +78,15 @@ export default function ComicDetails({ urlBack, setMyFavorites, token }) {
                     alt={comic.title}
                   />
                   {!favoritesUser.includes(comicId) && (
-                    <button
-                      onClick={addToFavorites}
-                      className="button-add-favorites"
-                    >
-                      Add to my favorites
-                    </button>
+                    <Button
+                      id={comicId}
+                      token={token}
+                      text="Add to my favorites"
+                      urlBack={urlBack}
+                      item="comics"
+                      toggle={toggle}
+                      setToggle={setToggle}
+                    />
                   )}
                 </div>
                 <aside>

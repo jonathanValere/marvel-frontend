@@ -75,19 +75,17 @@ export default function Comics({ urlBack, token }) {
               setCurrentPage={setCurrentPage}
               searchParams={searchParams}
             >
-              <ul className="list-items">
-                {dataComics.results
-                  .filter((comic) => comic.title.toLowerCase().includes(search))
-                  .sort()
-                  .map((comic) => (
-                    <Comic
-                      key={comic._id}
-                      comic={comic}
-                      token={token}
-                      favorites={favoritesComics}
-                    />
-                  ))}
-              </ul>
+              {dataComics.results
+                .filter((comic) => comic.title.toLowerCase().includes(search))
+                .sort()
+                .map((comic) => (
+                  <Comic
+                    key={comic._id}
+                    comic={comic}
+                    token={token}
+                    favorites={favoritesComics}
+                  />
+                ))}
             </LayoutItems>
           )}
         </div>
